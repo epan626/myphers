@@ -2,7 +2,7 @@ var app = angular.module('app', ['ngRoute', 'ngCookies'])
 /* configuration for angular route */
 app.config(['$locationProvider', function($locationProvider){
   $locationProvider.hashPrefix('')
-  $locationProvider.html5Mode(true)
+  // $locationProvider.html5Mode(true)
 }])
 app.config(function($routeProvider) {
   $routeProvider
