@@ -1,0 +1,49 @@
+<div ng-controller='orderController'>
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li role="presentation"><a href="/dashboard">Dashboard</a></li>
+      <li role="presentation"><a href="/products">Products</a></li>
+      <li role="presentation"><a href="/orders">Orders</a></li>
+      <li role="presentation"><a href="/customers">Customers</a></li>
+      <li role="presentation"><a href="/settings">Settings</a></li>
+    </ul>
+    <a href="/" ng-click='logout()'>logout</a>
+    <div class="row">
+      <div class="col-lg-4 col-md-2 col-sm-3">
+        <input type="text" ng-model='name' placeholder='Search for name'>
+      </div>
+      <div class="col-lg-8 col-md-8 col-sm-8">
+        <div class='imagepreview picborder' ng-repeat='product in products | limitTo:5 | filter:{name: name}'>
+          <a href="#/edit/{{product._id}}"><img src="{{product.image}}" alt="{{product.name}}">
+          <p ng-model='product.name'>Name: {{product.name}}</p>
+          <p>Quantity: {{product.quantity}}</p>
+          </a>
+        </div>
+        <a href="" ng-hide='showmore' ng-click='showmore=true'>show more</a>
+        <div ng-show='showmore' class='imagepreview picborder' ng-repeat='product in products | limitTo: 100: 6 | filter:{name: name}'>
+          <a href="#/edit/{{product._id}}"><img src="{{product.image}}" alt="{{product.name}}">
+          <p ng-model='product.name'>Name: {{product.name}}</p>
+          <p>Quantity: {{product.quantity}}</p>
+          </a>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-8">
+    <h3>Recent Orders</h3>
+    <div ng-repeat='order in orders'>
+      <p>{{order.customer}} purchased {{order.quantity}} {{order.product}}</p>
+    </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+      <h3>New Customers</h3>
+      <div ng-repeat="user in users">
+        <p>{{user.first_name}} {{user.last_name}} registered on {{user.created_at | date: 'medium'}}</p>
+      </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

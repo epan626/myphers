@@ -1,0 +1,49 @@
+<div ng-controller='orderController'>
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li role="presentation"><a href="/dashboard">Dashboard</a></li>
+      <li role="presentation"><a href="/products">Products</a></li>
+      <li role="presentation"><a href="/orders">Orders</a></li>
+      <li role="presentation"><a href="/customers">Customers</a></li>
+      <li role="presentation"><a href="/settings">Settings</a></li>
+    </ul>
+  <div class="row">
+    <h3>Add a new order</h3>
+    Customers: <select ng-options="user as user.first_name for user in users" ng-model="selected.customer"></select>
+    </select>
+    Product name: <select ng-options="product as product.name for product in products track by product._id" ng-model="selected.product">
+      </select>
+    Order: <select ng-model='selected.quantity'>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+      <form ng-submit='order()'>
+        <input type="submit" value="Order">
+      </form>
+      <div class="alert alert-danger" ng-repeat='message in messages'>
+        <p ng-show='errors'> {{ message }} </p>
+      </div>
+    <div>
+      <table class='table'>
+          <tr>
+            <th>Customer name</th>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Date</th>
+          </tr>
+          <tr>
+
+          </tr>
+      </table>
+    </div>
+  </div>
+  </div>
+</div>
