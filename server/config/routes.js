@@ -3,7 +3,9 @@ var Product = require('../controllers/productControllerS.js');
 var editProduct = require('../controllers/productEditControllerS.js');
 var User = require('../controllers/userControllerS.js');
 var Order = require('../controllers/orderControllerS.js');
-
+// var multer = require('multer');
+// var upload = multer({dest: 'uploads/'});
+// var fs = require('fs');
 
 module.exports = function(app){
   app.post('/createProduct', function(req, res){
@@ -47,5 +49,9 @@ module.exports = function(app){
   })
   app.get('/dashboard', function(req, res){
     res.render('static/views/partials/front.html')
+  })
+
+  app.post('/upload_pic', upload.single('file'), function(req, res){
+    Product.uploadImages(req, res)
   })
 }

@@ -33,5 +33,9 @@ module.exports = {
         res.json(products)
       }
     })
+  },
+  uploadImages: function(req, res){
+    console.log(req.file);
   }
+
 };

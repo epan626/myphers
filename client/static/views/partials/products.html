@@ -42,7 +42,7 @@
           </div> -->
 
           <div class="form-group">
-            <label for="image" class="cols-sm-2 control-label">Image</label>
+            <label for="image" class="col-sm-2 control-label">Image</label>
             <div class="cols-sm-3">
               <div class="input-group">
                 <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
@@ -72,12 +72,18 @@
               </div>
             </div>
           </div>
-
-
-    </div>
-    <input type="submit" value='Create'></input>
+        </div>
+        <input type="submit" value='Create'></input>
       </form>
     </div>
+    <div class="row">
+        <form class="dropzone" id="myDropzone" dropzone="dropzoneConfig">
+
+        </form>
+        <button type="button" ng-click="uploadFile()">Upload files</button>
+        <button type="button" ng-click="uploadFile()">Reset</button>
+    </div>
+
     <div class="">
       <div class='imagepreview picborder' ng-repeat='product in products  | filter:{name: name}'>
         <a href="#/edit/{{product._id}}"><img src="{{product.image}}" alt="{{product.name}}">
@@ -100,3 +106,6 @@
     </div>
 
   </div>
+  <script type="text/javascript">
+      Dropzone.autoDiscover = false;
+  </script>
