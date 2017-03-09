@@ -5,7 +5,7 @@ var User = require('../controllers/userControllerS.js');
 var Order = require('../controllers/orderControllerS.js');
 // var multer = require('multer');
 // var upload = multer({dest: 'uploads/'});
-// var fs = require('fs');
+var fs = require('fs');
 
 module.exports = function(app){
   app.post('/createProduct', function(req, res){
@@ -51,7 +51,10 @@ module.exports = function(app){
     res.render('static/views/partials/front.html')
   })
 
-  app.post('/upload_pic', upload.single('file'), function(req, res){
-    Product.uploadImages(req, res)
+  app.post('/upload_pic', function(req, res){
+    var test = req.files
+    test.forEach(function(file){
+      console.log(file.fieldname);
+    })
   })
 }

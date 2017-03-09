@@ -41,17 +41,18 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
     'options': { // passed into the Dropzone constructor
       url : '/upload_pic',
       maxThumbnailFilesize: 10,
-      parallelUploads: 1,
+      parallelUploads: 4,
+      uploadMultiple: true,
       autoProcessQueue: false
-    },
-    'eventHandlers': {
-      'sending': function (file, xhr, formData) {
-        console.log('sending');
-      },
-      'success': function (file, response) {
-        console.log("success");
-      }
     }
+    // 'eventHandlers': {
+    //   'sending': function (file, xhr, formData) {
+    //     console.log('sending');
+    //   },
+    //   'success': function (file, response) {
+    //     console.log("success");
+    //   }
+    // }
   };
 
   $scope.uploadFile = function(){
@@ -59,7 +60,7 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
   }
 
   $scope.reset = function(){
-    $scope.resetDropzone()
+    $scope.dropzone.removeAllFiles()
   }
 
   var getProducts = function () {

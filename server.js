@@ -6,9 +6,7 @@ var mongoose = require( 'mongoose' ),
     root     = __dirname,
     port     = process.env.PORT || 8000,
     app      = express(),
-    fs       = require('fs')
     multer   = require('multer');
-
 
 app.use( express.static( path.join( root, 'client/static/views' )));
 app.use( express.static( path.join( root, 'client/static/views/partials' )));
@@ -18,11 +16,11 @@ app.use( express.static( path.join( root, 'client/static/media' )));
 app.use( express.static( path.join( root, 'client/static/css/fonts' )));
 app.use( express.static( path.join( root, 'bower_components' )));
 app.use(bp.json());
-app.use(multer({dest: '/uploads',
-  rename: function(fieldname, filename){
-    return filename;
-  }
-}))
+app.use(multer({ dest: './uploads/',
+ rename: function (fieldname, filename) {
+   return filename;
+ }
+}).any());
 
 require('./server/config/mongoose.js')
 
