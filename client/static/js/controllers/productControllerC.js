@@ -29,10 +29,10 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
       $scope.messages.push('Please enter product quantity.');
     } else{
       if($scope.errors == false){
-      $scope.errors = false;
-      productFactory.createProduct($scope.product, function(result){
-        getProducts()
-    });
+        $scope.errors = false;
+        productFactory.createProduct($scope.product, function(result){
+          getProducts()
+        });
       }
     }
   };
@@ -44,19 +44,34 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
       parallelUploads: 4,
       uploadMultiple: true,
       autoProcessQueue: false
+      // previewTemplate: document.getElementById('preview-template').innerHTML
     }
-    // 'eventHandlers': {
-    //   'sending': function (file, xhr, formData) {
-    //     console.log('sending');
-    //   },
-    //   'success': function (file, response) {
-    //     console.log("success");
-    //   }
-    // }
   };
 
   $scope.uploadFile = function(){
-    $scope.dropzone.processQueue()
+    $scope.messages = [];
+    $scope.errors = false;
+    if($scope.product==undefined){
+      $scope.errors = true;
+      $scope.messages.push('Please enter product information.');
+    }
+    if(!$scope.product.name){
+      $scope.errors = true;
+      $scope.messages.push('Please enter product name.');
+    }
+    if(!$scope.product.description){
+      $scope.errors = true;
+      $scope.messages.push('Please enter product description.');
+    }
+    if(!$scope.product.quantity){
+      $scope.errors = true;
+      $scope.messages.push('Please enter product quantity.');
+    }
+    else{
+      if($scope.errors == false){
+        $scope.dropzone.processQueue()
+      }
+    }
   }
 
   $scope.reset = function(){
@@ -64,7 +79,6 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
   }
 
   var getProducts = function () {
-    console.log('here1')
     productFactory.getProducts(function(data){
     $scope.products = data.data;
     console.log($scope.products)

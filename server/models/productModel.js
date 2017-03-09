@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 var ProductSchema = new mongoose.Schema({
   name:{type: String, require: true},
   description: {type: String, require:true},
-  image: {data: Buffer, contentType: String, require:false},
+  image: {data: Buffer, type: Array, require:false},
   quantity: {type: Number, require:true},
   sold: {type: Number, default: 0}
 }, {timestamps: true});

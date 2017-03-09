@@ -52,9 +52,6 @@ module.exports = function(app){
   })
 
   app.post('/upload_pic', function(req, res){
-    var test = req.files
-    test.forEach(function(file){
-      console.log(file.fieldname);
-    })
+    console.log(req.body);
   })
 }

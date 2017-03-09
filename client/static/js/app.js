@@ -42,8 +42,9 @@ app.directive('dropzone', function(){
   });
 
   dropzone.on("sending", function (file, xhr, formData) {
-    console.log('sending');
+    formData.append("name", scope.product.name)
   })
+
   scope.dropzone = dropzone;
 
   };

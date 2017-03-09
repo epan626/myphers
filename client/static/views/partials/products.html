@@ -22,8 +22,8 @@
       <form class="form-horizontal" ng-submit="createProduct()">
 
           <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">Name</label>
-            <div class="cols-sm-3">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-3">
               <div class="input-group">
                 <span class=''><i class="fa fa-user fa" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" name="name" ng-model='product.name'/>
@@ -32,8 +32,8 @@
           </div>
 
           <!-- <div class="form-group">
-            <label for="image" class="cols-sm-2 control-label">Image</label>
-            <div class="cols-sm-3">
+            <label for="image" class="col-sm-2 control-label">Image</label>
+            <div class="col-sm-3">
               <div class="input-group">
                 <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                 <input type="file" class="form-control" name="image" ng-model="product.image" accept="image/*" app-filereader />
@@ -43,7 +43,7 @@
 
           <div class="form-group">
             <label for="image" class="col-sm-2 control-label">Image</label>
-            <div class="cols-sm-3">
+            <div class="col-sm-3">
               <div class="input-group">
                 <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                 <input type="text" class="form-control" name="image" ng-init="product.image='http://'" ng-model='product.image'/>
@@ -53,8 +53,8 @@
           </div>
 
           <div class="form-group">
-            <label for="description" class="cols-sm-2 control-label">Description</label>
-            <div class="cols-sm-3">
+            <label for="description" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-3">
               <div class="input-group">
                 <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                 <textarea class="form-control" rows="3" name="description" ng-model='product.description'></textarea>
@@ -64,8 +64,8 @@
           </div>
 
           <div class="form-group">
-            <label for="quantity" class="cols-sm-2 control-label">Quantity</label>
-            <div class="cols-sm-3">
+            <label for="quantity" class="col-sm-2 control-label">Quantity</label>
+            <div class="col-sm-3">
               <div class="input-group">
                 <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                 <input type="number" class="form-control" name="quantity" ng-init="product.quantity='1'" ng-model='product.quantity'/>
@@ -77,8 +77,8 @@
       </form>
     </div>
     <div class="row">
-        <form class="dropzone" id="myDropzone" dropzone="dropzoneConfig">
-
+        <form class="dropzone dz-clickable" id="myDropzone" dropzone="dropzoneConfig">
+          <div class="dz-message">Drop files here or click to upload.</div>
         </form>
         <button type="button" ng-click="uploadFile()">Upload files</button>
         <button type="button" ng-click="reset()">Reset</button>
@@ -106,6 +106,19 @@
     </div>
 
   </div>
+  <div id="preview-template" style="display:none;">
+    <div class="dz-preview dz-file-preview">
+      <div class="dz-details">
+        <div class="dz-filename"><span data-dz-name></span></div>
+        <div class="dz-size" data-dz-size></div>
+        <img data-dz-thumbnail />
+      </div>
+      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+      <div class="dz-success-mark"><span>✔</span></div>
+      <div class="dz-error-mark"><span>✘</span></div>
+      <div class="dz-error-message"><span data-dz-errormessage></span></div>
+    </div>
+  </div>
   <script type="text/javascript">
-      Dropzone.autoDiscover = false;
+    Dropzone.autoDiscover = false;
   </script>
