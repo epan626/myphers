@@ -2,7 +2,6 @@ app.controller('producteditController', ['$scope', 'productFactory', '$routePara
   $scope.products = []
   var editpage = function() {
     productFactory.editpage(function(product){
-      console.log('back2')
       console.log(product.data)
       $scope.products = product.data
     })

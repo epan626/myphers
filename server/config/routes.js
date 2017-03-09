@@ -45,7 +45,7 @@ module.exports = function(app){
   app.get('/populateNewArrivals', function(req, res){
     Product.populateNewArrivals(req, res)
   })
-  app.get('/dashboard', function(req, res){
-    res.render('static/views/partials/front.html')
+  app.post('/findCartProducts', function(req, res ){
+    Product.findCartProducts(req, res)
   })
 }

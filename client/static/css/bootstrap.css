@@ -1,21 +1,14 @@
-/*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
- * Copyright 2011-2016 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- */
-/*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-
 /*// CUSTOM START //*/
 
 /**{
-  outline: red 1px solid;
+  outline: red 1px dotted;
 }*/
 
 .newArrivals {
-  width: 100px;
-  height: 100px;
+  width: 250px;
+  height: 300px;
   margin-left: 5px;
-  margin-right: 170px;
+  margin-right: 5px;
   display: inline-block;
 }
 
@@ -37,6 +30,15 @@ div.imagepreview img {
 
 }
 
+.editImage img, .retailImage{
+  width: 340px;
+  height: 480px;
+}
+
+.retailContentContainer{
+  margin-top: 45px;
+}
+
 .picborder {
   margin: 5px;
   padding: 5px;
@@ -44,13 +46,35 @@ div.imagepreview img {
   border-radius: 2px;
 }
 
+.frontImages{
+  width: 1170px;
+  height: 950px;
+}
 
+.frontImagesContainer{
+  width: 1170px;
+  height: 950px;
+}
+
+.retailDetails {
+  margin-top: 25px;
+  margin-bottom: 20px;
+}
+
+.checkoutImage{
+  width: 100px;
+  height: 100px;
+}
+
+th{
+
+}
 /*// CUSTOM END //*/
 
 html {
   font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 80%;
+      -ms-text-size-adjust: 80%;
 }
 body {
   margin: 0;

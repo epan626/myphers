@@ -3,7 +3,10 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
 //   $scope.loggeduser = {};
 //   $scope.allmessage = [];
 //
-//   var cookie = $cookies.get('cookieloggeduser')
+  var cookie = $cookies.get('cookieloggeduser')
+  console.log("=======================");
+  console.log(cookie);
+  console.log("=======================");
 
 $scope.createProduct = function() {
   $scope.messages = [];

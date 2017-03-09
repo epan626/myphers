@@ -1,17 +1,33 @@
 <div ng-controller='producteditController'>
-  <form ng-submit='updateProduct()'>
-        Name: <input type="text" ng-model='products[0].name' >
-        Image: <input type="text" ng-model='products[0].image'>
-        Description: <input type="text" ng-model='products[0].description'>
-        Quantity: <input type="number" ng-model='products[0].quantity'>
-        <!-- ng-init ="user.first_name=x.first_name" value="{{x.first_name}}"
-        ng-init ="user.last_name=x.last_name" value="{{x.last_name}}"
-        ng-init ="user.birthday=x.birthday" value="{{x.birthday}}" -->
+  <div class="container">
+    <ul class="nav nav-pills">
+      <li role="presentation"><a href="#/dashboard">Dashboard</a></li>
+      <li role="presentation"><a href="#/products">Products</a></li>
+      <li role="presentation"><a href="#/orders">Orders</a></li>
+      <li role="presentation"><a href="#/customers">Customers</a></li>
+      <li role="presentation"><a href="#/settings">Settings</a></li>
+    </ul>
+    <div class="row">
+      <div class="col-lg-1 col-lg-offset-1">
+        <form ng-submit='updateProduct()'>
+              Name: <input type="text" ng-model='products[0].name' >
+              Image: <input type="text" ng-model='products[0].image'>
+              Description: <input type="text" ng-model='products[0].description'>
+              Quantity: <input type="number" ng-model='products[0].quantity'>
+              <!-- ng-init ="user.first_name=x.first_name" value="{{x.first_name}}"
+              ng-init ="user.last_name=x.last_name" value="{{x.last_name}}"
+              ng-init ="user.birthday=x.birthday" value="{{x.birthday}}" -->
 
-        <input type="submit" value="update">
-    </form>
+              <input type="submit" value="update">
+          </form>
+         <br><br><br>
+        <input type="button" value="Delete" ng-click='deleteProduct()'>
+      </div>
+      <div class="col-lg-3 col-lg-offset-4 editImage">
+        <img src="{{products[0].image}}" alt="{{products[0].name}}">
 
-    <br><br><br>
-    <input type="button" value="Delete" ng-click='deleteProduct()'>
+      </div>
     </div>
+
+  </div>
 </div>

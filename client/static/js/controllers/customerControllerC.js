@@ -2,6 +2,7 @@ app.controller('customerController', ['$scope', 'productFactory', 'userFactory',
   $scope.loggeduser = {}
   $scope.users =[]
   var cookie = $cookies.get('cookieloggeduser')
+
   console.log(cookie)
 
   $scope.register = function(){

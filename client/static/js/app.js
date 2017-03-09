@@ -27,4 +27,10 @@ app.config(function($routeProvider) {
     .when('/orders', {
       templateUrl: '/orders.html',
     })
+    .when('/retail/:id', {
+      templateUrl: '/retail.html',
+    })
+    .when('/cart', {
+      templateUrl: '/cart.html',
+    })
 });

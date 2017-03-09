@@ -7,7 +7,6 @@
       <li role="presentation"><a href="#/customers">Customers</a></li>
       <li role="presentation"><a href="#/settings">Settings</a></li>
     </ul>
-
     <div class='content'>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-sx-1">
 
@@ -30,35 +29,24 @@
               </div>
             </div>
           </div>
-
           <!-- <div class="form-group">
             <label for="image" class="cols-sm-2 control-label">Image</label>
             <div class="cols-sm-3">
               <div class="input-group">
                 <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                <input type="file" class="form-control" name="image" ng-model="product.image" accept="image/*" app-filereader />
+                <input type="text" class="form-control" name="image" ng-init="product.image='http://'" ng-model='product.image'/>
               </div>
             </div>
           </div> -->
-
-          <div class="form-group">
-            <label for="image" class="cols-sm-2 control-label">Image</label>
-            <div class="cols-sm-3">
-              <div class="input-group">
-                <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" name="image" ng-init="product.image='http://'" ng-model='product.image'/>
-                <!-- <input type="file" class="form-control" name="image" ng-model="product.image" accept="image/*" app-filereader /> -->
-              </div>
-            </div>
+          <div id="dZUpload" class="dropzone">
+                <div class="dz-default dz-message"></div>
           </div>
-
           <div class="form-group">
             <label for="description" class="cols-sm-2 control-label">Description</label>
             <div class="cols-sm-3">
               <div class="input-group">
                 <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
                 <textarea class="form-control" rows="3" name="description" ng-model='product.description'></textarea>
-                <!-- <input type="textarea" class="form-control" name="description" ng-model='product.description'/> -->
               </div>
             </div>
           </div>
@@ -72,31 +60,23 @@
               </div>
             </div>
           </div>
-
-
-    </div>
-    <input type="submit" value='Create'></input>
-      </form>
-    </div>
-    <div class="">
-      <div class='imagepreview picborder' ng-repeat='product in products  | filter:{name: name}'>
-        <a href="#/edit/{{product._id}}"><img src="{{product.image}}" alt="{{product.name}}">
-        <p ng-model='product.name'>Name: {{product.name}}</p>
-        <p>Quantity: {{product.quantity}}</p>
-        <p>Sold: {{product.sold}}</p>
-        </a>
-      </div>
-
-    </div>
-
-          </div>
-
-          </div>
+        </div>
+        <input type="submit" value='Create'></input>
       </form>
       </div>
-      <div class=".col-md-9">
-
-
+      <div>
+        <div class='imagepreview picborder' ng-repeat='product in products  | filter:{name: name}'>
+          <a href="#/edit/{{product._id}}"><img src="{{product.image}}" alt="{{product.name}}">
+          <p ng-model='product.name'>Name: {{product.name}}</p>
+          <p>Quantity: {{product.quantity}}</p>
+          <p>Sold: {{product.sold}}</p>
+          </a>
+        </div>
+      </div>
     </div>
+  </div>
+      </form>
+      </div>
+
 
   </div>

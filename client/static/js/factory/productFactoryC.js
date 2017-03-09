@@ -33,9 +33,9 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
       }
     )
   }
-  factory.edit = function(product){
-    $http.get('/editpage', product)
-  }
+  // factory.edit = function(product){
+  //   $http.get('/editpage', product)
+  // }
   factory.updateProduct = function(product, callback){
     $http.put('/updateProduct', product)
     .then(
@@ -64,6 +64,14 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
 
   factory.populateNewArrivals = function(callback){
     $http.get('/populateNewArrivals')
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
+  factory.findCartProducts = function(cart, callback){
+    $http.post('/findCartProducts', cart )
     .then(
       function(result){
         callback(result)

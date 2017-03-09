@@ -1,6 +1,8 @@
 app.controller('orderController', ['productFactory', 'userFactory', '$scope', '$location', '$cookies', function(productFactory, userFactory, $scope, $location, $cookies){
     var cookie = $cookies.get('cookieloggeduser')
-    console.log(cookie)
+    console.log("=======================");
+    console.log(cookie);
+    console.log("=======================");
  $scope.users = [];
  $scope.products =[];
  $scope.orders = [];

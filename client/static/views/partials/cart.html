@@ -1,0 +1,51 @@
+<div ng-controller='cartController'>
+	<div class="container">
+		<div class="row">
+			<div class="logohead">
+				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/">Myphers</a></header>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-7 col-lg-offset-4 text-center">
+				<ul class="nav nav-pills">
+					<li role="presentation"><a ng-click="showNav=!showNav" href="">Shop</a></li>
+					<li role="presentation"><a href="#/lookbook">Lookbook</a></li>
+					<li role="presentation"><a href="#/models">Models</a></li>
+					<li role="presentation"><a href="#/register">Register / Log in</a></li>
+				</ul>
+			</div>
+			<div class="col-lg-1">
+				<a href="#/cart">Cart</a>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-lg-offset-4">
+				<h4 class="text-center">Shopping Cart</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-6 col-lg-offset-3">
+				<fieldset>
+					<table class="table">
+						<tr>
+							<th></th>
+							<th></th>
+							<th>Name</th>
+							<th>Unit Price</th>
+							<th>Qty</th>
+							<th>Subtotal</th>
+						</tr>
+						<tr ng-repeat="product in detailCart.products">
+							<td>x</td>
+							<td><img class="checkoutImage"src="{{product.image}}" alt=""></td>
+							<td>{{product.name}}</td>
+							<td>$20.00</td>
+							<td>{{product.qty}}</td>
+							<td>$20.00</td>
+						</tr>
+					</table>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</div>
