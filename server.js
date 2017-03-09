@@ -6,7 +6,8 @@ var mongoose = require( 'mongoose' ),
     root     = __dirname,
     port     = process.env.PORT || 8000,
     app      = express(),
-    multer   = require('multer');
+    multer   = require('multer'),
+    stripe   = require('stripe')("sk_test_XAXofQRNkxFPuEpCoXmR9nRc")
 
 app.use(multer({ dest: './uploads/',
  rename: function (fieldname, filename) {

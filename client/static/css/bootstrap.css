@@ -11,38 +11,7 @@
   outline: red 1px solid;
 }*/
 
-.newArrivals {
-  width: 100px;
-  height: 100px;
-  margin-left: 5px;
-  margin-right: 170px;
-  display: inline-block;
-}
 
-div.newArrivals img {
-  width: 250px;
-  height: 300px;
-}
-div.photo a.imglink img.newpicture {
-  width: 250px;
-  height: 200px;
-}
-
-div.imagepreview {
-    display: inline-block;
-}
-div.imagepreview img {
-  width: 100px;
-  height: 100px;
-
-}
-
-.picborder {
-  margin: 5px;
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 2px;
-}
 
 
 /*// CUSTOM END //*/

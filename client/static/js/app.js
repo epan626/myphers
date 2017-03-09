@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ngRoute', 'ngCookies'])
+var app = angular.module('app', ['ngRoute', 'ngCookies', 'ui.bootstrap'])
 /* configuration for angular route */
 app.config(['$locationProvider', function($locationProvider){
   $locationProvider.hashPrefix('')
@@ -27,6 +27,9 @@ app.config(function($routeProvider) {
     .when('/orders', {
       templateUrl: '/orders.html',
     })
+    .when('/shopping_cart', {
+      templateUrl: '/shopping_cart.html'
+    })
 });
 
 app.directive('dropzone', function(){
@@ -43,8 +46,16 @@ app.directive('dropzone', function(){
 
   dropzone.on("sending", function (file, xhr, formData) {
     formData.append("name", scope.product.name)
-    formData.append("descroption", scope.product.description)
+    formData.append("description", scope.product.description)
     formData.append("quantity", scope.product.quantity)
+  })
+
+  dropzone.on("complete", function(file, xhr, formData){
+    scope.getProducts()
+    scope.product.name = ""
+    scope.product.description = ""
+    scope.product.quantity = 1
+    dropzone.removeAllFiles()
   })
 
   scope.dropzone = dropzone;

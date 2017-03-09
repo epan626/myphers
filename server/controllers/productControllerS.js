@@ -34,9 +34,6 @@ module.exports = {
       }
     })
   },
-  uploadImages: function(req, res){
-    console.log(req.file);
-  },
   createNewProduct: function(req, res){
     var quantity = parseInt(req.body.quantity)
     var product = new Product({name: req.body.name, description: req.body.description, quantity: quantity, image: []})

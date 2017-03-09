@@ -17,6 +17,11 @@
   "dependencies": {
     "angular": "^1.6.1",
     "angular-route": "^1.6.1",
-    "angular-cookies": "^1.6.1"
+    "angular-cookies": "^1.6.1",
+    "angular-bootstrap": "^2.5.0",
+    "angular-payments": "*"
+  },
+  "resolutions": {
+    "angular": "1.6.1"
   }
 }
