@@ -43,6 +43,8 @@ app.directive('dropzone', function(){
 
   dropzone.on("sending", function (file, xhr, formData) {
     formData.append("name", scope.product.name)
+    formData.append("descroption", scope.product.description)
+    formData.append("quantity", scope.product.quantity)
   })
 
   scope.dropzone = dropzone;

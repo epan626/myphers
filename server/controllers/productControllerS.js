@@ -36,6 +36,24 @@ module.exports = {
   },
   uploadImages: function(req, res){
     console.log(req.file);
+  },
+  createNewProduct: function(req, res){
+    var quantity = parseInt(req.body.quantity)
+    var product = new Product({name: req.body.name, description: req.body.description, quantity: quantity, image: []})
+    req.files.forEach(function(imageFile){
+      product.image.push(imageFile.path)
+    })
+    product.save(function(err, product){
+      if(err){
+        console.log(err);
+        res.json("There was an error while creating the product")
+      } else{
+        console.log(product);
+        Product.find({}, function(err, allProducts){
+          res.json(allProducts)
+        });
+      }
+    });
   }
 
 };

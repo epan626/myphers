@@ -52,6 +52,6 @@ module.exports = function(app){
   })
 
   app.post('/upload_pic', function(req, res){
-    console.log(req.body);
+    Product.createNewProduct(req, res)
   })
 }
