@@ -6,77 +6,57 @@
       <li role="presentation"><a href="#/orders">Orders</a></li>
       <li role="presentation"><a href="#/customers">Customers</a></li>
       <li role="presentation"><a href="#/settings">Settings</a></li>
+      <li role="presentation"><a href="#/shopping_cart">Shopping Cart</a></li>
     </ul>
-    <div class='content'>
-      <div class="col-lg-3 col-md-3 col-sm-3 col-xl-3 col-sx-1">
-
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
+    <div class='content row'>
+      <div class="col-lg-3">
+        <form class="navbar-form navbar-left" role="search">
           <input type="text" class="form-control" placeholder="Search by name" ng-model='name'>
-          </form>
-          <h5>Add a new product</h5>
-          <div class="alert alert-danger" ng-repeat='message in messages'>
-            <p ng-show='errors'> {{ message }} </p>
-          </div>
-      <form class="form-horizontal" ng-submit="createProduct()">
-
-          <div class="form-group">
-            <label for="name" class="cols-sm-2 control-label">Name</label>
-            <div class="cols-sm-3">
-              <div class="input-group">
-                <span class=''><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" name="name" ng-model='product.name'/>
-              </div>
-            </div>
-          </div>
-          <!-- <div class="form-group">
-            <label for="image" class="cols-sm-2 control-label">Image</label>
-            <div class="cols-sm-3">
-              <div class="input-group">
-                <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" name="image" ng-init="product.image='http://'" ng-model='product.image'/>
-              </div>
-            </div>
-          </div> -->
-          <div id="dZUpload" class="dropzone">
-                <div class="dz-default dz-message"></div>
-          </div>
-          <div class="form-group">
-            <label for="description" class="cols-sm-2 control-label">Description</label>
-            <div class="cols-sm-3">
-              <div class="input-group">
-                <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                <textarea class="form-control" rows="3" name="description" ng-model='product.description'></textarea>
-              </div>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="quantity" class="cols-sm-2 control-label">Quantity</label>
-            <div class="cols-sm-3">
-              <div class="input-group">
-                <span class=""><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                <input type="number" class="form-control" name="quantity" ng-init="product.quantity='1'" ng-model='product.quantity'/>
-              </div>
-            </div>
-          </div>
+        </form>
+        <h5>Add a new product</h5>
+        <div class="alert alert-danger" ng-repeat='message in messages'>
+          <p ng-show='errors'> {{ message }} </p>
         </div>
-        <input type="submit" value='Create'></input>
-      </form>
+        <form class="form-horizontal" ng-submit="createProduct()">
+          <div class="form-group">
+            <label for="name" class="control-label">Name</label>
+            <input type="text" class="form-control" name="name" ng-model='product.name'/>
+            <label for="description" class="control-label">Description</label>
+            <textarea class="form-control" rows="3" name="description" ng-model='product.description'></textarea>
+            <label for="quantity" class="control-label">Quantity</label>
+            <input type="number" class="form-control" name="inventory" ng-init="product.inventory=1" ng-model='product.inventory'/>
+            <div class="dropzone dz-clickable" id="myDropzone" dropzone="dropzoneConfig">
+              <div class="dz-message">Drop files here or click to upload.</div>
+            </div>
+          </div>
+          <input type="submit" value='Create'></input>
+        </form>
       </div>
-      <div>
+      <div class="">
         <div class='imagepreview picborder' ng-repeat='product in products  | filter:{name: name}'>
-          <a href="#/edit/{{product._id}}"><img src="{{product.image}}" alt="{{product.name}}">
+          <a href="#/edit/{{product._id}}"><img src="{{product.image[0]}}" alt="{{product.name}}">
           <p ng-model='product.name'>Name: {{product.name}}</p>
-          <p>Quantity: {{product.quantity}}</p>
+          <p>Quantity: {{product}}</p>
           <p>Sold: {{product.sold}}</p>
           </a>
         </div>
       </div>
     </div>
   </div>
-      </form>
+  <div id="preview-template" style="display:none;">
+    <div class="dz-preview dz-file-preview">
+      <div class="dz-details">
+        <div class="dz-filename"><span data-dz-name></span></div>
+        <div class="dz-size" data-dz-size></div>
+        <img data-dz-thumbnail />
       </div>
-
-
+      <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+      <div class="dz-success-mark"><span>✔</span></div>
+      <div class="dz-error-mark"><span>✘</span></div>
+      <div class="dz-error-message"><span data-dz-errormessage></span></div>
+    </div>
   </div>
+  <script type="text/javascript">
+    Dropzone.autoDiscover = false;
+  </script>
+</div>

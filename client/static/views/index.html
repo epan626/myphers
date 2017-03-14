@@ -4,13 +4,20 @@
     <meta charset="utf-8">
     <title></title>
     <link type="text/css" rel="stylesheet" href="bootstrap.css"></link>
-    <link type="text/css" rel="stylesheet" href="bootstrap-theme.css"></link>
-    <link type="text/css" rel="stylesheet" href="basic.css"></link>
-    <link type="text/css" rel="stylesheet" href="dropzone/dist/dropzone.css"></link>
+    <link type="text/css" rel="stylesheet" href="main.css"></link>
+    <link type="text/css" rel="stylesheet" href="dropzone/dist/basic.css"></link>
     <script src="dropzone/dist/dropzone.js"></script>
+    <link type="text/css" rel="stylesheet" href="basic.css"></link>
     <script src="angular/angular.js"></script>
     <script src="angular-route/angular-route.js"></script>
     <script src="angular-cookies/angular-cookies.js"></script>
+    <script src="angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <link type="text/css" rel="stylesheet" href="angular-bootstrap/ui-bootstrap-csp.css"></link>
+
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <!-- <script type="text/javascript">Stripe.setPublishableKey('pk_test_7HijwgM5g2NN7U9q9pTS7QCD')</script> -->
+      <script src="angular-payments/lib/angular-payments.js"></script>
     <script src="app.js"></script>
     <script src="controllers/adminControllerC.js"></script>
     <script src="controllers/productControllerC.js"></script>
@@ -20,13 +27,16 @@
     <script src="controllers/frontPageController.js"></script>
     <script src="controllers/retailControllerC.js"></script>
     <script src="controllers/cartControllerC.js"></script>
+    <script src="controllers/shoppingCartController.js"></script>
+    <script src="controllers/checkoutController.js" charset="utf-8"></script>
     <script src="factory/productFactoryC.js"></script>
     <script src="factory/userFactoryC.js"></script>
+    <script src="factory/checkoutFactory.js"></script>
+    <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap/bootstrap.js"></script>
   </head>
   <body>
-  <div ng-view>
-  </div>
-  <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
-  <script type="text/javascript" src="bootstrap/bootstrap.js"></script>
+    <div ng-view>
+    </div>
   </body>
 </html>

@@ -3,6 +3,10 @@ var Product = require('../controllers/productControllerS.js');
 var editProduct = require('../controllers/productEditControllerS.js');
 var User = require('../controllers/userControllerS.js');
 var Order = require('../controllers/orderControllerS.js');
+var Checkout = require('../controllers/checkoutControllerS.js')
+// var multer = require('multer');
+// var upload = multer({dest: 'uploads/'});
+var fs = require('fs');
 
 
 module.exports = function(app){
@@ -48,4 +52,11 @@ module.exports = function(app){
   app.post('/findCartProducts', function(req, res ){
     Product.findCartProducts(req, res)
   })
+  app.post('/upload_pic', function(req, res){
+    Product.createNewProduct(req, res)
+  })
+  app.post('/handleStripe', function(req, res){
+    Checkout.charge(req, res)
+    });
+
 }

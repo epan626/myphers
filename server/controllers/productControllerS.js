@@ -40,25 +40,37 @@ module.exports = {
     for(var x = 0; x<count; x++){
       cartProduct.push(Object.keys(req.body)[x])
     }
-      // console.log(cartProduct);
       Product.find({_id: { $in: cartProduct}}).lean().exec(function(err, product){
         if(err){
-          console.error('err');
+          console.error('error');
         } else {
-          // console.log(req.body);
           for(var i = 0; i<product.length; i++){
             product[i].qty = req.body[product[i]._id];
-            console.log(product[i].qty);
+            // console.log(product[i].qty);
             // console.log(product[i]);
           }
           allDetailCart['products'] = product
           // allDetailCart[quantity] = req.body
-          console.log(allDetailCart);
+          // console.log(allDetailCart);
           res.json(allDetailCart)
         }
       })
+  },
+  createNewProduct: function(req, res){
+    var quantity = parseInt(req.body.quantity)
+    var product = new Product({name: req.body.name, description: req.body.description, quantity: quantity, image: []})
+    req.files.forEach(function(imageFile){
+      product.image.push(imageFile.path)
+    })
+    product.save(function(err, product){
+      if(err){
+        console.log(err);
+        res.json("There was an error while creating the product")
+      } else{
+        Product.find({}, function(err, allProducts){
+          res.json(allProducts)
+        });
+      }
+    });
   }
-
-
-
 };
