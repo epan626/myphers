@@ -3,10 +3,8 @@
 }
 
 .newArrivals {
-  width: 100px;
-  height: 100px;
   margin-left: 5px;
-  margin-right: 170px;
+  margin-right: 10px;
   display: inline-block;
 }
 
@@ -86,8 +84,13 @@ div.imagepreview img {
 .retailContentContainer{
   margin-top: 45px;
 }
-
-.frontImages{
+.frontImage{
+  margin-top: 10px;
+  width: 100%;
+  height: 320px;
+  background-color: red;
+}
+/*.frontImages{
   width: 1170px;
   height: 950px;
 }
@@ -95,7 +98,7 @@ div.imagepreview img {
 .frontImagesContainer{
   width: 1170px;
   height: 950px;
-}
+}*/
 
 .retaiDetails {
   margin-top: 25px;
@@ -133,4 +136,9 @@ div.imagepreview img {
 
 .newArrivalsRightArrow{
 
+}
+
+.newArrivalImages{
+  margin-top: 20px;
+  height: 380px;
 }

@@ -25,28 +25,35 @@
 				<div ng-show="showNav">
 					<ul class="nav nav-pills">
 						<li role="presentation"><a href="#/">All</a></li>
-						<li role="presentation"><a href="#/">Male</a></li>
-						<li role="presentation"><a href="#/">Female</a></li>
+						<li role="presentation"><a href="#/">Tops</a></li>
+						<li role="presentation"><a href="#/">Bottoms</a></li>
+						<li role="presentation"><a href="#/">Accessories</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
+		<div class="frontImage">
 
+		</div>
 		<!-- Main front image -->
-		<div class="row frontImagesContainer">
+		<!-- <div class="row frontImagesContainer">
 			<div class="col-lg-12 frontImagesContainer">
 				<div class="content_container ">
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel"> -->
     <!-- Indicators -->
-    <ol class="carousel-indicators">
+    <!-- <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0"></li>
       <li data-target="#myCarousel" data-slide-to="1"></li>
       <li data-target="#myCarousel" data-slide-to="2"></li>
       <li data-target="#myCarousel" data-slide-to="3"></li>
-    </ol>
+    </ol> -->
+
+
     <!-- Wrapper for slides -->
     <!-- Eventually make this able to be added/edit/delete through backend -->
-    <div class="carousel-inner frontImages" role="listbox">
+
+
+    <!-- <div class="carousel-inner frontImages" role="listbox">
       <div class="item active">
         <img class ="img-responsive center-block " src="random.jpeg" alt='flea'>
       </div>
@@ -54,9 +61,11 @@
 			<div class="item frontImages">
 				<img class ="img-responsive center-block " src="streetfighter/cody.jpg" alt='flea'>
 			</div>
+ -->
 
     <!-- Left and right controls -->
-    <a class="left carousel-control" data-target="#myCarousel" role="button" data-slide="prev">
+
+    <!-- <a class="left carousel-control" data-target="#myCarousel" role="button" data-slide="prev">
       <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
     </a>
@@ -68,16 +77,23 @@
   </div>
 			</div>
 		</div>
-	</div>
+	</div> -->
+
+
 		<!-- Main front image END -->
 	<div class="row">
-		<div class="col-lg-12 text-center">
+		<div class="col-lg-12 newArrivalImages text-center">
 			<h5>New Arrivals</h5>
-			<button class="newArrivalsLeftArrow" type="button" name="button" ng-click="leftNewArrivalsArrow()">&#171;</button>
+			<button id="newArrivalsLeftArrow" type="button" name="button" ng-click="leftNewArrivalsArrow()">&#171;</button>
 			<div class="newArrivals" ng-repeat="product in newProducts | limitTo: 4 : productIndex">
 				<a href="#/retail/{{product._id}}"><img src="{{product.image[0]}}" alt="{{product.name}}"></a>
 			</div>
 				<button id="newArrivalsRightArrow" type="button" name="button" ng-click="rightNewArrivalArrow()">&#187;</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 text-center">
+			<h5>Blogs</h5>
 		</div>
 	</div>
 	<div class="footer-wrap">
@@ -85,4 +101,5 @@
 
 		</div>
 	</div>
+</div>
 </div>
