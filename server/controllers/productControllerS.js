@@ -2,19 +2,23 @@ var mongoose = require('mongoose')
 var Product = mongoose.model('Product');
 
 module.exports = {
-  createProduct: function(req, res){
-    var product = new Product({name: req.body.name, description: req.body.description, image: req.body.image, quantity: req.body.quantity})
+  createNewProduct: function(req, res){
+    var inventory = parseInt(req.body.inventory)
+    var product = new Product({name: req.body.name, description: req.body.description, inventory: inventory, price: req.body.price, category: req.body.category, size: req.body.size, image: []})
+    req.files.forEach(function(imageFile){
+      product.image.push(imageFile.path)
+    })
     product.save(function(err, product){
       if(err){
-        console.log(err)
-        res.json('Error while creating product')
-      } else {
-        console.log('Creating ' + product)
-        Product.find({}, function(err, allproducts){
-          res.json(allproducts)
-      })
-    }
-  })},
+        console.log(err);
+        res.json("There was an error while creating the product")
+      } else{
+        Product.find({}, function(err, allProducts){
+          res.json(allProducts)
+        });
+      }
+    });
+  },
   getProducts: function(req, res){
     Product.find({}, function(err, products){
       if(err){
@@ -46,31 +50,10 @@ module.exports = {
         } else {
           for(var i = 0; i<product.length; i++){
             product[i].qty = req.body[product[i]._id];
-            // console.log(product[i].qty);
-            // console.log(product[i]);
           }
           allDetailCart['products'] = product
-          // allDetailCart[quantity] = req.body
-          // console.log(allDetailCart);
           res.json(allDetailCart)
         }
       })
-  },
-  createNewProduct: function(req, res){
-    var quantity = parseInt(req.body.quantity)
-    var product = new Product({name: req.body.name, description: req.body.description, quantity: quantity, image: []})
-    req.files.forEach(function(imageFile){
-      product.image.push(imageFile.path)
-    })
-    product.save(function(err, product){
-      if(err){
-        console.log(err);
-        res.json("There was an error while creating the product")
-      } else{
-        Product.find({}, function(err, allProducts){
-          res.json(allProducts)
-        });
-      }
-    });
   }
 };

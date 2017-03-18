@@ -7,9 +7,9 @@ var ProductSchema = new mongoose.Schema({
   image: {data: Buffer, type: Array, require:false},
   inventory: {type: Number, require:true},
   sold: {type: Number, default: 0},
-  price: {type: Number, require:true},
-  condition: {type: String},
-  sizing: {type: String}
+  price: {type: String, require:true},
+  category: {type: String},
+  size: {type: String}
 }, {timestamps: true});
 
 

@@ -58,18 +58,30 @@ app.directive('dropzone', function(){
   angular.forEach(config.eventHandlers, function (handler, event) {
     dropzone.on(event, handler);
   });
-
+    var flag = false
   dropzone.on("sending", function (file, xhr, formData) {
-    formData.append("name", scope.product.name)
-    formData.append("description", scope.product.description)
-    formData.append("quantity", scope.product.quantity)
+    if(flag == false){
+      formData.append("name", scope.product.name)
+      formData.append("description", scope.product.description)
+      formData.append("inventory", scope.product.inventory)
+      formData.append("price", scope.product.price)
+      formData.append("category", scope.product.category)
+      formData.append("size", scope.product.size)
+      flag = true
+      console.log('got there');
+    }
+
   })
 
   dropzone.on("complete", function(file, xhr, formData){
     scope.getProducts()
     scope.product.name = ""
     scope.product.description = ""
-    scope.product.quantity = 1
+    scope.product.inventory = 1
+    scope.product.price = 0
+    scope.product.category = ""
+    scope.product.size = ""
+    flag = false
     dropzone.removeAllFiles()
   })
 

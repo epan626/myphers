@@ -1,7 +1,8 @@
 app.controller('productController', ['productFactory', '$scope', '$location', '$cookies', function(productFactory, $scope, $location, $cookies){
   $scope.products = [];
   var cookie = $cookies.get('cookieloggeduser')
-
+  $scope.categories = ["shirt", "pants", "sweater", "jacket", "other"]
+  $scope.sizes = ["XS","S", "M", "L", "XL", "XXL"]
   $scope.dropzoneConfig = {
     'options': {
       url : '/upload_pic',
@@ -14,6 +15,7 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
   };
 
   $scope.createProduct = function(){
+    console.log($scope.product.price);
     $scope.messages = [];
     $scope.errors = false;
     if($scope.product==undefined){
@@ -28,9 +30,21 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
       $scope.errors = true;
       $scope.messages.push('Please enter product description.');
     }
-    if(!$scope.product.quantity){
+    if(!$scope.product.inventory){
       $scope.errors = true;
       $scope.messages.push('Please enter product quantity.');
+    }
+    if(!$scope.product.price){
+      $scope.errors = true;
+      $scope.messages.push('Please enter product price.');
+    }
+    if(!$scope.product.category){
+      $scope.errors = true;
+      $scope.messages.push('Please select a product category.');
+    }
+    if(!$scope.product.size){
+      $scope.errors = true;
+      $scope.messages.push('Please select a product size.');
     }
     else{
       if($scope.errors == false){

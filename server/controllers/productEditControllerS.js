@@ -13,29 +13,31 @@ module.exports = {
     })
   },
   updateProduct: function(req, res){
-    console.log('atupdate')
-    console.log(req.body.quantity)
-    Product.update({_id: req.body._id}, {name: req.body.name, description: req.body.description, image: req.body.image, quantity: req.body.quantity}, function(err, product){
+    Product.update({_id: req.body._id}, {name: req.body.name, description: req.body.description, image: req.body.image, inventory: req.body.inventory, size: req.body.size, sold: req.body.sold, price: req.body.price, condition: req.body.condition}, function(err, product){
       if(err){
         console.log(err)
-        console.log('error?')
-      res.json(err)
+        res.json(err)
     } else {
-      res.json('yes')
+      res.json('Product was updated successfully.')
     }
     })
   },
-
+  changeMainEditImage: function(req, res){
+    Product.update({_id: req.body._id}, {image: req.body.newOrder}, function(err, product){
+      if(err){
+        console.error(err);
+      } else {
+        console.log(product);
+        res.json(product)
+      }
+    })
+  },
   deleteProduct: function(req, res){
-    console.log(req.params)
-    console.log('up')
     Product.remove({_id: req.params.id}, function(err, success){
       if(err){
         console.log(err)
-        console.log('error?')
       } else {
-        console.log('successfully deleted')
-        res.json('success')
+        res.json('Product was deleted successfully')
       }
     })
   }

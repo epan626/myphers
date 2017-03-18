@@ -60,7 +60,14 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
       }
     )
   }
-
+  factory.changeMainEditImage = function(product, callback){
+    $http.put('/changeMainEditImage', product)
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
 return factory
 
 }])

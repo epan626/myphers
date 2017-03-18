@@ -1,3 +1,7 @@
+*{
+  outline: 1px dotted red;
+}
+
 .newArrivals {
   width: 100px;
   height: 100px;
@@ -15,12 +19,15 @@ div.photo a.imglink img.newpicture {
   height: 200px;
 }
 
-div.imagepreview {
-    display: inline-block;
+.imagepreview {
+  display: inline-block;
 }
+
 div.imagepreview img {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+}
+
+.newArrivalsArrows{
 
 }
 
@@ -29,6 +36,10 @@ div.imagepreview img {
   padding: 5px;
   border: 1px solid black;
   border-radius: 2px;
+  display: inline-block;
+  width: 160px;
+  height: 320px;
+  vertical-align: top;
 }
 
 .credit-card-div  span {
@@ -45,9 +56,31 @@ div.imagepreview img {
 }
 
 
-.editImage img, .retailImage{
+.editImage img {
   width: 340px;
   height: 480px;
+   border: 1px solid;
+}
+
+.retailImage{
+  width: 340px;
+  height: 480px;
+}
+
+
+.editImagePreview img{
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  margin: 10px;
+  border: 1px solid;
+}
+.editImagePreview{
+  width: 100px;
+  height: 100px;
+  margin: 4px;
+  display: inline-block;
+
 }
 
 .retailContentContainer{
@@ -64,12 +97,40 @@ div.imagepreview img {
   height: 950px;
 }
 
-.retailDetails {
+.retaiDetails {
   margin-top: 25px;
   margin-bottom: 20px;
+}
+
+.retailDetailsContent{
+   margin-top: 50px;
 }
 
 .checkoutImage{
   width: 100px;
   height: 100px;
+}
+
+.dropzoneBox{
+  border: 1px solid black;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+.previewRetailImage img{
+  width: 70px;
+  height: 70px;
+}
+
+.previewRetailImage{
+  display: inline-block;
+  margin: 5px;
+}
+
+.previewRetailImageContainer{
+  width: 100%
+}
+
+.newArrivalsRightArrow{
+
 }

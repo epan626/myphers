@@ -57,6 +57,8 @@ module.exports = function(app){
   })
   app.post('/handleStripe', function(req, res){
     Checkout.charge(req, res)
-    });
-
+  });
+  app.put('/changeMainEditImage', function(req, res){
+    editProduct.changeMainEditImage(req, res)
+  })
 }

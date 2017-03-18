@@ -20,23 +20,23 @@
 		</div>
 		<div class="retailContentContainer">
 			<div class="row">
-				<div class="col-lg-5 col-lg-offset-1 retailImageContainer">
-					<img class="retailImage" src="{{products[0].image}}" alt="{{products[0].name}}">
+				<div class="col-lg-4 col-lg-offset-1 retailImageContainer">
+					<img id="mainRetailImage" class="retailImage" src="{{products[0].image[0]}}" alt="{{products[0].name}}">
+					<div class="previewRetailImageContainer">
+						<div class="previewRetailImage" ng-repeat="product in products[0].image" ng-click="changeMainRetailImage(product)">
+							<img src="{{product}}">
+						</div>
+					</div>
 				</div>
-				<div class="col-lg-5">
-					<!-- <h4>{{products[0].name}}</h4>  //temporary
-					<h4>{{products[0].price}}</h4> -->
-					<!-- <h5>Quantity: {{products[0].quantity}}</h5>
-					<h5>Description</h5>
-					{{products[0].description}}
-					<h5>Condition</h5>
-					{{products[0].condition}} -->
-					<h4 class="retailDetails">90's WWF The Rock The Peoples Choice Tee Shirt</h4>
-					<h4 class="retailDetails">$20.00</h4>
-					<h5 class="retailDetails">Quantity: <input type="Number" ng-model="quantity" ng-init ="quantity=1"></h5>
-					<h5 class="retailDetails">Condition: Good</h5>
-					<h5 class="retailDetails">Size: Men's XL</h5>
-					<h5 class="retailDetails">Details: The mother fucking Rock. WWF Champion.</h5>
+				<div class="retailDetailsContent col-lg-5 col-lg-offset-1">
+					<h4 class="retailDetails">{{products[0].name}}</h4>
+					<h4 class="retailDetails">${{products[0].price}}</h4>
+					<h5 ng-if="products[0].inventory==1" class="retailDetails"> Quantity: 1</h5>
+					<h5 ng-if="products[0].inventory>1" class="retailDetails"><select class="" name="" ng-options="item as item for item in quantityOptions" ng-model = "product.quantityOptions" ng-init="product.quantityOptions = 1">
+					</select></h5>
+					<h5 class="retailDetails">{{products[0].description}}</h5>
+					<!-- <h5 class="retailDetails">Size: Men's XL</h5>
+					<h5 class="retailDetails">Details: The mother fucking Rock. WWF Champion.</h5> -->
 					<button ng-click="addToCart(products[0], quantity)" class="retailDetails" type="button" name="button">Add to cart</button>
 			<h5>{{cart}}</h5>
 
