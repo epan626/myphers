@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="logohead">
-				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/">Myphers</a></header>
+				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/"><img class ="myphersLogo" src="/myphers.jpg" alt="myphers"></a></header>
 			</div>
 		</div>
 		<div class="row">
@@ -14,8 +14,21 @@
 					<li role="presentation"><a href="#/register">Register / Log in</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-1">
-				<a href="#/cart">Cart</a>
+			<div class="row">
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-4 text-center">
+							<div ng-show="showNav">
+								<ul class="nav nav-pills">
+									<li role="presentation"><a href="#/all">All</a></li>
+									<li role="presentation"><a href="#/tops">Tops</a></li>
+									<li role="presentation"><a href="#/bottoms">Bottoms</a></li>
+									<li role="presentation"><a href="#/accessories">Accessories</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">
@@ -35,16 +48,36 @@
 							<th>Qty</th>
 							<th>Subtotal</th>
 						</tr>
-						<tr ng-repeat="product in detailCart.products">
-							<td>x</td>
-							<td><img class="checkoutImage"src="{{product.image}}" alt=""></td>
+						<tr ng-hide="product.hide" ng-repeat="product in detailCart.products">
+							<td><button ng-click="removeFromCart(product)" type="button" name="button">x</button></td>
+							<td><img class="checkoutImage" src="{{product.image[0]}}" alt=""></td>
 							<td>{{product.name}}</td>
-							<td>$20.00</td>
-							<td>{{product.qty}}</td>
-							<td>$20.00</td>
+							<td>${{product.price}}</td>
+
+							<h5 ng-if="products[0].inventory>1" class="retailDetails"><select  ng-change="changeQuantity(products[0], quantityOption)" ng-options="item as item for item in quantityOptions" ng-model = "quantityOption" ng-init="quantityOption = 1">
+							</select></h5>
+
+
+							<td ng-if="product.inventory==1">{{product.qty}}</td>
+							<td ng-if="product.inventory >1"><input ng-model = "product.qty" class ="cartQTY" type="text" value="{{product.qty}}"></td>
+							<td>${{product.subtotal}}</td>
 						</tr>
 					</table>
+					<div class="col-lg-3 col-lg-offset-10">
+						<p>Total: ${{grandTotal}}</p>
+					</div>
 				</fieldset>
+				<div class="alert alert-danger" ng-repeat='message in messages'>
+					<p ng-show='errors'> {{ message }} </p>
+				</div>
+				<div class="row">
+					<div class="col-lg-2 col-lg-offset-6">
+						<button ng-click="updateCart(detailCart.products)" type="button" name="button">Update Cart </button>
+					</div>
+					<div class="col-lg-3">
+						<button type="button" name="button">Proceed to Checkout</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

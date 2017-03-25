@@ -1,10 +1,9 @@
-*{
+/**{
   outline: 1px dotted red;
-}
+}*/
 
 .newArrivals {
-  margin-left: 5px;
-  margin-right: 10px;
+  margin: 5px;
   display: inline-block;
 }
 
@@ -61,7 +60,7 @@ div.imagepreview img {
 }
 
 .retailImage{
-  width: 340px;
+  width: 390px;
   height: 480px;
 }
 
@@ -90,15 +89,6 @@ div.imagepreview img {
   height: 320px;
   background-color: red;
 }
-/*.frontImages{
-  width: 1170px;
-  height: 950px;
-}
-
-.frontImagesContainer{
-  width: 1170px;
-  height: 950px;
-}*/
 
 .retaiDetails {
   margin-top: 25px;
@@ -134,11 +124,66 @@ div.imagepreview img {
   width: 100%
 }
 
-.newArrivalsRightArrow{
-
-}
-
 .newArrivalImages{
   margin-top: 20px;
-  height: 380px;
+}
+
+.allLogo{
+  background-color: red;
+  width: 100%;
+  height: 250px;
+  margin-top: 10px;
+}
+.myphersLogo{
+  height: 150px;
+  margin-bottom: -25px;
+  margin-top: -40px;
+}
+
+.frontLogo{
+  background-color: red;
+  width: 100%;
+  height: 250px;
+  margin-top: 10px;
+}
+
+.topsLogo{
+  background-color: red;
+  width: 100%;
+  height: 250px;
+  margin-top: 10px;
+}
+.bottomsLogo{
+  background-color: red;
+  width: 100%;
+  height: 250px;
+  margin-top: 10px;
+}
+
+.productImages{
+  width: 275px;
+  height: 320px;
+  display: inline-block;
+  /*border: 1px solid black;*/
+  vertical-align: top;
+  margin: 5px;
+}
+
+.productImages img{
+  width: 250px;
+  height: 250px;
+}
+
+.productImagesContainer{
+  margin-top: 20px;
+}
+
+/*li{
+  margin-right: 10px;
+  margin-left: 20px;
+}*/
+
+.cartQTY{
+  width: 25px;
+  text-align: center;
 }

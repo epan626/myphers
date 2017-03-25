@@ -16,6 +16,15 @@ module.exports = function(app){
   app.get('/getProducts', function(req, res){
     Product.getProducts(req, res)
   })
+  app.get('/getTops', function(req, res){
+    Product.getTops(req, res)
+  })
+  app.get('/getBottoms', function(req, res){
+    Product.getBottoms(req, res)
+  })
+  app.get('/getAccessories', function(req, res){
+    Product.getAccessories(req, res)
+  })
   app.get('/editpage/:id', function(req, res){
     editProduct.editpage(req, res)
   })

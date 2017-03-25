@@ -4,17 +4,12 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
   create: function(req, res){
-    console.log(req.body)
-    console.log('here0')
     User.find({email: req.body.email}, function(err, user){
-      console.log(user)
       if(!user[0]){
-        console.log('here')
         var user = new User({email: req.body.email, first_name: req.body.first_name, last_name: req.body.last_name, password: req.body.password})
         user.save(function(err, user){
-          console.log('here1')
             if(err){
-              console.log('error while creating user')
+              console.error('error while creating user')
             } else {
               console.log('creating user ' + user)
             }
@@ -35,7 +30,6 @@ module.exports = {
         else if (bcrypt.compareSync(req.body.password, user[0].password) == false){
           res.json('The email/password is incorrect')
         } else {
-          console.log(user)
           res.json(user)
         }
       }
@@ -60,8 +54,6 @@ module.exports = {
     })
   },
   deleteuser: function(req, res){
-    console.log(req.body)
-    console.log('up')
     User.remove({_id: req.body._id}, function(err, user){
       if(err){
         console.log('error deleting user')

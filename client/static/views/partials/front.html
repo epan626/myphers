@@ -2,16 +2,16 @@
 	<div class="container">
 		<div class="row">
 			<div class="logohead">
-				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/">Myphers</a></header>
+				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/"><img class ="myphersLogo" src="/myphers.jpg" alt="myphers"></a></header>
 			</div>
 		</div>
 		<!-- Main navbar -->
 		<div class="row">
-			<div class="col-lg-7 col-lg-offset-4 text-center">
+			<div class="col-lg-4 col-lg-offset-4 text-center">
 				<ul class="nav nav-pills">
 					<li role="presentation"><a ng-click="showNav=!showNav" href="">Shop</a></li>
 					<li role="presentation"><a href="#/lookbook">Lookbook</a></li>
-					<li role="presentation"><a href="#/models">Models</a></li>
+					<!-- <li role="presentation"><a href="#/models">Models</a></li> -->
 					<li role="presentation"><a href="#/register">Register / Log in</a></li>
 				</ul>
 			</div>
@@ -21,10 +21,27 @@
 		</div>
 		<!-- shop navbar -->
 		<div class="row">
-			<div class="col-lg-8 col-lg-offset-4 text-center">
+
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-4 text-center">
+						<div ng-show="showNav">
+							<ul class="nav nav-pills">
+								<li role="presentation"><a href="#/all">All</a></li>
+								<li role="presentation"><a href="#/tops">Tops</a></li>
+								<li role="presentation"><a href="#/bottoms">Bottoms</a></li>
+								<li role="presentation"><a href="#/accessories">Accessories</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="frontLogo">
+
+				</div>
+			</div>
+			<!-- <div class="col-lg-8 col-lg-offset-4 text-center">
 				<div ng-show="showNav">
 					<ul class="nav nav-pills">
-						<li role="presentation"><a href="#/">All</a></li>
+						<li role="presentation"><a href="#/all">All</a></li>
 						<li role="presentation"><a href="#/">Tops</a></li>
 						<li role="presentation"><a href="#/">Bottoms</a></li>
 						<li role="presentation"><a href="#/">Accessories</a></li>
@@ -34,7 +51,7 @@
 		</div>
 		<div class="frontImage">
 
-		</div>
+		</div> -->
 		<!-- Main front image -->
 		<!-- <div class="row frontImagesContainer">
 			<div class="col-lg-12 frontImagesContainer">
@@ -81,16 +98,36 @@
 
 
 		<!-- Main front image END -->
-	<div class="row">
-		<div class="col-lg-12 newArrivalImages text-center">
-			<h5>New Arrivals</h5>
+
+		<!-- scroll bar with 4 images  -->
+	<!-- <div class="row">
+		<div class="col-lg-12 newArrivalImages">
+			<h5 class="text-center">New Arrivals</h5>
+
 			<button id="newArrivalsLeftArrow" type="button" name="button" ng-click="leftNewArrivalsArrow()">&#171;</button>
 			<div class="newArrivals" ng-repeat="product in newProducts | limitTo: 4 : productIndex">
 				<a href="#/retail/{{product._id}}"><img src="{{product.image[0]}}" alt="{{product.name}}"></a>
 			</div>
 				<button id="newArrivalsRightArrow" type="button" name="button" ng-click="rightNewArrivalArrow()">&#187;</button>
 		</div>
+	</div> -->
+
+	<div class="row">
+		<div class="col-lg-12 newArrivalImages text-center">
+			<h5 class="text-center">New Arrivals</h5>
+
+			<!-- <button id="newArrivalsLeftArrow" type="button" name="button" ng-click="leftNewArrivalsArrow()">&#171;</button> -->
+			<div class="">
+				<div class="newArrivals" ng-repeat="product in newProducts | limitTo: 8 : productIndex">
+					<a href="#/retail/{{product._id}}"><img src="{{product.image[0]}}" alt="{{product.name}}"></a>
+				</div>
+			</div>
+
+				<!-- <button id="newArrivalsRightArrow" type="button" name="button" ng-click="rightNewArrivalArrow()">&#187;</button> -->
+		</div>
 	</div>
+
+
 	<div class="row">
 		<div class="col-lg-12 text-center">
 			<h5>Blogs</h5>

@@ -1,7 +1,7 @@
 app.controller('productController', ['productFactory', '$scope', '$location', '$cookies', function(productFactory, $scope, $location, $cookies){
   $scope.products = [];
   var cookie = $cookies.get('cookieloggeduser')
-  $scope.categories = ["shirt", "pants", "sweater", "jacket", "other"]
+  $scope.categories = ["shirt", "sweater", "jacket", "shorts", "pants", "other"]
   $scope.sizes = ["XS","S", "M", "L", "XL", "XXL"]
   $scope.dropzoneConfig = {
     'options': {
@@ -32,7 +32,7 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
     }
     if(!$scope.product.inventory){
       $scope.errors = true;
-      $scope.messages.push('Please enter product quantity.');
+      $scope.messages.push('Please enter product inventory.');
     }
     if(!$scope.product.price){
       $scope.errors = true;

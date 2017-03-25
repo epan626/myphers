@@ -1,6 +1,6 @@
 app.controller('producteditController', ['$scope', 'productFactory', '$routeParams', '$location', function($scope, productFactory, $routeParams, $location){
   $scope.products = []
-   $scope.categories = ["shirt", "pants", "sweater", "jacket", "other"]
+   $scope.categories = ["shirt", "sweater", "jacket", "shorts", "pants", "other"]
 
   var editpage = function() {
     productFactory.editpage(function(product){

@@ -5,8 +5,6 @@ var Order = mongoose.model('Order')
 
 module.exports = {
   orderproduct: function(req, res){
-    console.log(req.body)
-      console.log('up here')
     User.find({_id: req.body.customer._id}, function(err, user){
       if(err){
         console.log('error locating user')
@@ -15,8 +13,6 @@ module.exports = {
           if(err){
             console.log('error locating product')
           } else {
-            console.log(req.body.quantity)
-            console.log('up here')
             var newProductAmount = parseInt(product[0].quantity) - parseInt(req.body.quantity)
             var newSoldAmount = parseInt(product[0].sold) + parseInt(req.body.quantity)
             var username = user[0].first_name +" "+ user[0].last_name
@@ -27,7 +23,6 @@ module.exports = {
               if(err){
                 console.log('error updating product')
               } else {
-                console.log(product1)
                 order.save()
                 res.json(order)
               }

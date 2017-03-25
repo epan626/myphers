@@ -9,6 +9,30 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
       }
     )
   }
+  factory.getTops = function(callback){
+    $http.get('/getTops')
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
+  factory.getBottoms = function(callback){
+    $http.get('/getBottoms')
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
+  factory.getAccessories = function(callback){
+    $http.get('/getAccessories')
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
   factory.editpage = function(callback){
     $http.get('/editpage/'+$routeParams.id)
     .then(
@@ -53,6 +77,7 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
     )
   }
   factory.findCartProducts = function(cart, callback){
+    console.log(cart);
     $http.post('/findCartProducts', cart )
     .then(
       function(result){
@@ -68,6 +93,16 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
       }
     )
   }
+  factory.removeFromCart = function(allProduct, callback){
+    console.log(allProduct);
+    $http.post('/findCartProducts', allProduct)
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
+
 return factory
 
 }])

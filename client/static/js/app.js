@@ -44,6 +44,18 @@ app.config(function($routeProvider) {
     .when('/checkout',{
       templateUrl:'/checkout.html'
     })
+    .when('/all',{
+      templateUrl:'/all.html'
+    })
+    .when('/tops',{
+      templateUrl:'/tops.html'
+    })
+    .when('/bottoms',{
+      templateUrl:'/bottoms.html'
+    })
+    .when('/accessories',{
+      templateUrl:'/accessories.html'
+    })
 });
 
 
@@ -68,7 +80,6 @@ app.directive('dropzone', function(){
       formData.append("category", scope.product.category)
       formData.append("size", scope.product.size)
       flag = true
-      console.log('got there');
     }
 
   })

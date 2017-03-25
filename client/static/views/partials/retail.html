@@ -31,14 +31,11 @@
 				<div class="retailDetailsContent col-lg-5 col-lg-offset-1">
 					<h4 class="retailDetails">{{products[0].name}}</h4>
 					<h4 class="retailDetails">${{products[0].price}}</h4>
-					<h5 ng-if="products[0].inventory==1" class="retailDetails"> Quantity: 1</h5>
-					<h5 ng-if="products[0].inventory>1" class="retailDetails"><select class="" name="" ng-options="item as item for item in quantityOptions" ng-model = "product.quantityOptions" ng-init="product.quantityOptions = 1">
+					<h5 ng-if="products[0].inventory==1" class="retailDetails" ng-model=quantityOption> Quantity: 1</h5>
+					<h5 ng-if="products[0].inventory>1" class="retailDetails"><select  ng-change="changeQuantity(products[0], quantityOption)" ng-options="item as item for item in quantityOptions" ng-model = "quantityOption" ng-init="quantityOption = 1">
 					</select></h5>
 					<h5 class="retailDetails">{{products[0].description}}</h5>
-					<!-- <h5 class="retailDetails">Size: Men's XL</h5>
-					<h5 class="retailDetails">Details: The mother fucking Rock. WWF Champion.</h5> -->
-					<button ng-click="addToCart(products[0], quantity)" class="retailDetails" type="button" name="button">Add to cart</button>
-			<h5>{{cart}}</h5>
+					<button ng-click="addToCart(products[0], quantityOption)" class="retailDetails" type="button" name="button">Add to cart</button>
 
 				</div>
 			</div>
