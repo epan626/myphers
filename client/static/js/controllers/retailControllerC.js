@@ -15,7 +15,6 @@ app.controller('retailController', ['$scope', '$rootScope', 'productFactory', '$
       for(var x = 0; x<product.data[0].inventory; x++){
         count ++
         $scope.quantityOptions.push(count)
-        console.log($scope.quantityOptions);
       }
     })
   }
@@ -32,7 +31,6 @@ app.controller('retailController', ['$scope', '$rootScope', 'productFactory', '$
     var quantity = 0
     if(product.inventory>1){
       if($scope.quantity == undefined){
-        console.log('here');
         quantity = 1
       } else {
         quantity = $scope.quantity
@@ -54,9 +52,6 @@ app.controller('retailController', ['$scope', '$rootScope', 'productFactory', '$
       } else {
         if(id in allProduct){
           var newQuantity = parseInt(allProduct[id])+parseInt(quantity)
-          console.log(newQuantity);
-          console.log(allProduct[id]);
-          console.log(quantity);
           if(newQuantity <= parseInt(product.inventory)) {
             allProduct[id] = newQuantity
           $cookies.putObject('cookieProducts', allProduct)

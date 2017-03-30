@@ -1,0 +1,52 @@
+<div ng-controller="shippingBillingController">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-4 col-lg-offset-1">
+				<h3>Shipping Address</h3>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-lg-offset-1">
+				<form ng-submit="shippingAddress(customer)">
+			<div class="form-group">
+		    <label for="first_name">First Name</label>
+		    <input type="text" class="form-control"  ng-model="customer.FirstName">
+		  </div>
+			<div class="form-group">
+				<label for="last_name">Last Name</label>
+				<input type="text" class="form-control" ng-model="customer.LastName">
+			</div>
+			<div class="form-group">
+				<label for="email">E-mail</label>
+				<input type="text" class="form-control" ng-model="customer.email">
+			</div>
+			<div class="form-group">
+				<label for="numberAndStreet">House Number and Street</label>
+				<input type="text" class="form-control" placeholder="Street address, P.O. box"  ng-model="customer.NumberStreet">
+			</div>
+			<div class="form-group">
+				<label for="AddressTwo">Address Line 2</label>
+				<input type="text" class="form-control" placeholder="Apartment, suite, unit, building, floor, etc" ng-model="customer.AddressTwo">
+			</div>
+			<div class="form-group">
+				<label for="townCity">Town/City</label>
+				<input type="text" class="form-control" ng-model="customer.townCity">
+			</div>
+			<div class="form-group">
+				<label for="state">State</label>
+				<input type="text" class="form-control" ng-model="customer.state">
+			</div>
+			<div class="form-group">
+				<label for="zipCode">Zip Code</label>
+				<input type="text" class="form-control" ng-model="customer.zipCode">
+			</div>
+			<div class="form-group">
+				<label for="country">Country</label>
+				<input type="text" class="form-control" ng-model="customer.country">
+			</div>
+				<button class="pull-right" type="submit" name="button">Continue</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,42 +1,81 @@
 <div ng-controller='checkoutController'>
-
 	<div class="row">
-         <div class="span4 col-lg-offset-1">
+		<div class="logohead">
+			 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/"><img class ="myphersLogo" src="/myphers.jpg" alt="myphers"></a></header>
+		</div>
+	</div>
+	<h1 class="text-center">Place Order</h1>
+	<div class="row">
+         <div class="col-lg-offset-1">
            <div class="row">
+						 <div class="col-lg-3">
+  						<div class="cardInfo">
+								 <h3>Credit Card</h3>
+  							<form stripe-form="handleStripe" name="myForm">
+  								<div>
+  									<label>Name on card </label>
+  									<input type="text" class="input-block-level" ng-model="name">		
+  								</div>
+                  <div>
+                    <label>Card number</label>
+                    <input type="text" class="input-block-level" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
+                  </div>
 
-             <div class="span4">
-               <h3>Shut up and take my money!</h3>
-             </div>
+                  <div>
+                    <label>Expiry</label>
+                    <input type="text" class="input-block-level" ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
+                  </div>
 
-             <form stripe-form="handleStripe" name="myForm">
+                  <div>
+                    <label>CVC</label>
+                    <input type="text" class="input-block-level" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type"/>
+                  </div>
 
-               <div class="span3">
-                 <label for="">Card number</label>
-                 <input type="text" class="input-block-level" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type"/>
-               </div>
+                  <div>
+                    <button type="submit" class="btn btn-primary btn-large">Charge ${{grandTotal}}</button>
+                  </div>
+                </form>
+  						</div>
+							<div class="">
+								<p>Shipping: ${{shippingCost}}</p>
+								<h3>Order Total: ${{grandTotal}}</h3>
+							</div>
+						</div>
 
-               <div class="span1">
-                 <label for="">Expiry</label>
-                 <input type="text" class="input-block-level" ng-model="expiry" payments-validate="expiry" payments-format="expiry" />
-               </div>
+						 <div class="col-lg-7 col-lg-offset-1">
+							 <h3>Review Order</h3>
+							 <div class="reviewContainer">
+								 <table class="table table-sm">
+								 	<tr>
+								 		<th>Your shopping bag</th>
+										<th></th>
+								 	</tr>
+									<tr ng-repeat="product in detailCart.products">
+										<td><img class="checkOutPreviewImage" src="{{product.image[0]}}" alt=""></td>
+										<td><div class="testingDiv">
+											<h5>{{product.name}}</h5>
+											<p>Details: {{product.description}}</p>
+											<p>Size: {{product.size}}</p>
+											<p>QTY: {{product.qty}}</p>
+											<p>${{product.subtotal}}</p>
+										</div></td>
+									</tr>
+								 </table>
+								 <!-- {{shipInfo}}
+								 {{detailCart}}
+								 {{cookieProducts}} -->
+							 </div>
+							<div >
+								<h4>Shipping Address <span ><a class="changeButton" href="#/shipping">Change</a></span></h4>
+								<h5>{{shipInfo.FirstName}} {{shipInfo.LastName}}</h5>
+								<p>{{shipInfo.NumberStreet}}</p>
+								<p>{{shipInfo.townCity}}, {{shipInfo.state}} {{shipInfo.zipCode}}</p>
+							</div>
 
-               <div class="span3">
-                 <label for="">Name on card </label>
-                 <input type="text" class="input-block-level">
-               </div>
-
-               <div class="span1">
-                 <label for="">CVC</label>
-                 <input type="text" class="input-block-level" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type"/>
-               </div>
-
-               <div class="span4">
-                 <button type="submit" class="btn btn-primary btn-large">Submit</button>
-               </div>
-             </form>
-
+						 </div>
            </div>
          </div>
+
        </div>
 
 </div>

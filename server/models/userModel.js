@@ -39,6 +39,9 @@ var UserSchema = new mongoose.Schema({
       minlength: 3,
       maxlength: 32
     },
+    customer: {
+      type: String
+    },
     _orders: [{type: Schema.Types.ObjectId, ref: 'Order'}]
   },
     {

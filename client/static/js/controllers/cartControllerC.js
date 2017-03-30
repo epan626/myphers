@@ -1,22 +1,21 @@
 app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, $routeParams, $location, $cookies){
   var cookieProducts = $cookies.getObject('cookieProducts')
-  $scope.showDetails = function (product){
-
-  }
-
 	var findCartProducts = function(){
     $scope.grandTotal  = 0
 		productFactory.findCartProducts(cookieProducts, function(result){
 			$scope.detailCart = result.data
+      console.log($scope.detailCart);
       for(var x = 0; x<$scope.detailCart.products.length; x++){
         $scope.grandTotal += parseInt($scope.detailCart.products[x].subtotal)
       }
-      $scope.grandTotal = ($scope.grandTotal).toFixed(2)
+      $scope.shippingCost = ($scope.detailCart.shippingCost).toFixed(2)
+      $scope.grandTotal = (parseInt($scope.grandTotal)+parseInt($scope.shippingCost)).toFixed(2)
 		})
 	}
 	findCartProducts()
 
   $scope.removeFromCart = function(product){
+    $scope.shippingCost = 0
     var allProduct = $cookies.getObject('cookieProducts')
     var id = product._id
 
@@ -31,6 +30,8 @@ app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$ro
       for(var x = 0; x<$scope.detailCart.products.length; x++){
         $scope.grandTotal += parseInt($scope.detailCart.products[x].subtotal)
       }
+      $scope.grandTotal += result.data.shippingCost
+      $scope.shippingCost = (result.data.shippingCost).toFixed(2)
       $scope.grandTotal = ($scope.grandTotal).toFixed(2)
     })
   }
@@ -46,35 +47,25 @@ app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$ro
       }
     }
     if($scope.errors == false){
-
       $scope.grandTotal  = 0
-      console.log(newQuantity);
-      console.log(cookieProducts);
       for(var i = 0; i<newQuantity.length; i++){
         var id = newQuantity[i]._id
         if(newQuantity[i].qty > 0) {
-          newProducts[id] = newQuantity[i].qty
+          newProducts[id] = parseInt(newQuantity[i].qty)
         }
       }
        $cookies.putObject('cookieProducts', newProducts)
   		productFactory.findCartProducts(newProducts, function(result){
-        console.log(result);
-        console.log('up');
   			$scope.detailCart = result.data
-        console.log($scope.detailCart);
         for(var x = 0; x<$scope.detailCart.products.length; x++){
           $scope.grandTotal += parseInt($scope.detailCart.products[x].subtotal)
         }
+        $scope.shippingCost = (result.data.shippingCost).toFixed(2)
+
+        $scope.grandTotal = $scope.grandTotal + parseInt(result.data.shippingCost)
         $scope.grandTotal = ($scope.grandTotal).toFixed(2)
   		})
     }
-      // if(newQuantity[x].qty > newQuantity[x].inventory){
-      //   $scope.tooMuchAlert = function(){
-      //     $window.alert(newQuantity[x]
-      //   }
-      // }
-    // }
-    // $cookies.putObject('cookieProducts', newQuantity)
   }
 
   // $scope.logout = function() {

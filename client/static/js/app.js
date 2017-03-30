@@ -56,6 +56,12 @@ app.config(function($routeProvider) {
     .when('/accessories',{
       templateUrl:'/accessories.html'
     })
+    .when('/shipping',{
+      templateUrl: '/shipping.html'
+    })
+    .when('/billing',{
+      templateUrl: '/billing.html'
+    })
 });
 
 

@@ -10,7 +10,6 @@
 				<ul class="nav nav-pills">
 					<li role="presentation"><a ng-click="showNav=!showNav" href="">Shop</a></li>
 					<li role="presentation"><a href="#/lookbook">Lookbook</a></li>
-					<li role="presentation"><a href="#/models">Models</a></li>
 					<li role="presentation"><a href="#/register">Register / Log in</a></li>
 				</ul>
 			</div>
@@ -56,14 +55,13 @@
 
 							<h5 ng-if="products[0].inventory>1" class="retailDetails"><select  ng-change="changeQuantity(products[0], quantityOption)" ng-options="item as item for item in quantityOptions" ng-model = "quantityOption" ng-init="quantityOption = 1">
 							</select></h5>
-
-
 							<td ng-if="product.inventory==1">{{product.qty}}</td>
 							<td ng-if="product.inventory >1"><input ng-model = "product.qty" class ="cartQTY" type="text" value="{{product.qty}}"></td>
 							<td>${{product.subtotal}}</td>
 						</tr>
 					</table>
 					<div class="col-lg-3 col-lg-offset-10">
+						<p>Shipping: ${{shippingCost}}</p>
 						<p>Total: ${{grandTotal}}</p>
 					</div>
 				</fieldset>
@@ -75,7 +73,8 @@
 						<button ng-click="updateCart(detailCart.products)" type="button" name="button">Update Cart </button>
 					</div>
 					<div class="col-lg-3">
-						<button type="button" name="button">Proceed to Checkout</button>
+						<a href="#/shipping">
+						<button type="button" name="button">Proceed to Checkout</button></a>
 					</div>
 				</div>
 			</div>
