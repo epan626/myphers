@@ -11,10 +11,13 @@
 						 <div class="col-lg-3">
   						<div class="cardInfo">
 								 <h3>Credit Card</h3>
+								 <div class="alert alert-danger" ng-repeat='message in messages'>
+		               <p ng-show='errors'> {{ message }} </p>
+		             </div>
   							<form stripe-form="handleStripe" name="myForm">
   								<div>
   									<label>Name on card </label>
-  									<input type="text" class="input-block-level" ng-model="name">		
+  									<input type="text" class="input-block-level" ng-model="name">
   								</div>
                   <div>
                     <label>Card number</label>

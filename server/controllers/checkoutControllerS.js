@@ -23,6 +23,7 @@ charge: function(req, res){
 		cartProduct.push(Object.keys(req.body.products)[x])
 	}
 	Product.find({_id: { $in: cartProduct}}).lean().exec(function(err, result){
+
 		if(err){
 			console.error(err);
 		} else {
@@ -116,17 +117,21 @@ charge: function(req, res){
 
 						})
 					} else {
+						// if customer exist and they have a stripe customer ID
 						if(user.customer != null){
+							//fetch the customer
 							stripe.customers.retrieve(user.customer, function(err, customer){
 								if(err){
 									console.log(err);
 								} else {
+									//update the source token to the new one
 									stripe.customers.update(user.customer, {
 										 source: req.body.token
 									}, function(err, customer){
 										if(err){
 											console.error(err);
 										} else {
+											//creates the charge and charges the card
 											stripe.charges.create({
 												amount: price,
 												currency: "usd",
@@ -136,7 +141,26 @@ charge: function(req, res){
 												if(err){
 													console.error(err);
 												} else {
-													res.json(charge)
+													//loops through cart to update the database
+													for(var i = 0; i < result.length; i++){
+														if(req.body.products[result[i]._id] > 1){
+															var quant = req.body.products[result[i]._id]
+															Product.update({_id: result[i]._id}, {
+																$inc: {sold: quant, inventory: -(quant)}}, function(err, product){
+																if(err){
+																	console.log(err);
+																} else {
+																	console.log(product);
+																	var result = {}
+																	result.email = charge.data
+																	console.log(result);
+																	// result.amount = charge.data.amount
+																	res.json(result)
+																}
+															})
+														}
+													}
+
 												}
 										})
 										}

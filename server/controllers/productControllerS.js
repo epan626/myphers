@@ -20,7 +20,7 @@ module.exports = {
     });
   },
   getProducts: function(req, res){
-    Product.find({}).sort({createdAt: 'desc'}).exec(function(err, products){
+    Product.find({inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
       if(err){
         console.error(err);
       } else {
@@ -29,16 +29,17 @@ module.exports = {
     })
   },
   getTops: function(req, res){
-    Product.find({category: {$nin: ["pants", "shorts", "other"]}}).sort({createdAt: 'desc'}).exec(function(err, products){
+    Product.find({category: {$nin: ["pants", "shorts", "other"]}, inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
       if(err){
         console.error(err);
       } else {
+        console.log(products);
         res.json(products)
       }
     })
   },
   getBottoms: function(req, res){
-    Product.find({category: {$nin: ["shirt", "sweater", "jacket", "other"]}}).sort({createdAt: 'desc'}).exec(function(err, products){
+    Product.find({category: {$nin: ["shirt", "sweater", "jacket", "other"]}, inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
       if(err){
         console.error(err);
       } else {
@@ -47,7 +48,7 @@ module.exports = {
     })
   },
   getAccessories: function(req, res){
-    Product.find({category: {$in: ["other"]}}).sort({createdAt: 'desc'}).exec(function(err, products){
+    Product.find({category: {$in: ["other"]}, inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
       if(err){
         console.error(err);
       } else {
@@ -56,7 +57,7 @@ module.exports = {
     })
   },
   populateNewArrivals: function(req, res){
-    Product.find({}).sort({createdAt: 'desc'}).exec(function(err, products){
+    Product.find({inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
       if(err){
         console.log('Error occurred locating products')
       } else {

@@ -6,8 +6,12 @@ app.controller('checkoutController', ['$scope', 'productFactory', 'checkoutFacto
 
 
   $scope.handleStripe = function(status, response){
-	  if(response.error) {
-			    console.log("error");
+    $scope.messages = []
+    $scope.errors = false
+    console.log(status);
+	  if(response.error || status == 400) {
+      $scope.messages.push("Invalid Credit Card")
+			$scope.errors = true
       } else {
         console.log(status);
         console.log(response);
@@ -16,8 +20,8 @@ app.controller('checkoutController', ['$scope', 'productFactory', 'checkoutFacto
 					console.log(result);
           console.log('im back bitches');
           $cookies.remove('cookieProducts')
-          $cookies.remove('shipInfo')
-          $cookies.remove('billInfo')
+          // $cookies.remove('shipInfo')
+          // $cookies.remove('billInfo')
           $location.url('/')
 				})
       }
