@@ -28,8 +28,27 @@ module.exports = {
       }
     })
   },
-  getTops: function(req, res){
-    Product.find({category: {$nin: ["pants", "shorts", "other"]}, inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
+  getSoldOutProducts: function(req, res){
+    Product.find({inventory: {$eq: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
+      if(err){
+        console.error(err);
+      } else {
+        res.json(products)
+      }
+    })
+  },
+  getShirts: function(req, res){
+    Product.find({category: {$nin: ["pants", "shorts", "other", "jacket", "sweater"]}, inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
+      if(err){
+        console.error(err);
+      } else {
+        console.log(products);
+        res.json(products)
+      }
+    })
+  },
+  getOuterwear: function(req, res){
+    Product.find({category: {$nin: ["pants", "shorts", "other", "shirt"]}, inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
       if(err){
         console.error(err);
       } else {
@@ -57,7 +76,7 @@ module.exports = {
     })
   },
   populateNewArrivals: function(req, res){
-    Product.find({inventory: {$gt: 0}}).sort({createdAt: 'desc'}).exec(function(err, products){
+    Product.find({inventory: {$gt: 0}}).sort({updatedAt: 'desc'}).exec(function(err, products){
       if(err){
         console.log('Error occurred locating products')
       } else {
@@ -74,13 +93,13 @@ module.exports = {
       jacket: 0, sweater: 0, sweatshirt: 0, shirt: 0, shorts: 0, pants: 0, other: 0
     };
     var shippingCost = 0
-    console.log(count);
     for(var x = 0; x<count; x++){
       cartProduct.push(Object.keys(req.body)[x])
     }
+
       Product.find({_id: { $in: cartProduct}}).lean().exec(function(err, product){
         if(err){
-          console.error('error');
+          console.error(err);
         } else {
           for(var i = 0; i<product.length; i++){
             product[i].qty = req.body[product[i]._id];
@@ -113,7 +132,6 @@ module.exports = {
           }
           allDetailCart['products'] = product
           allDetailCart['shippingCost'] = shippingCost
-          console.log(shipCalculator);
           res.json(allDetailCart)
         }
       })

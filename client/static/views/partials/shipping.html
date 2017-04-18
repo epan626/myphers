@@ -1,52 +1,100 @@
 <div ng-controller="shippingBillingController">
 	<div class="container">
 		<div class="row">
-			<div class="col-lg-4 col-lg-offset-1">
-				<h3>Shipping Address</h3>
+			<div class="logohead">
+				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/"><img class ="myphersLogo" src="/myphers.jpg" alt="myphers"></a></header>
 			</div>
 		</div>
 		<div class="row">
+<ol class="breadCrumbs ">
+  <li><a href="#">Cart</a></li>
+  <li class="active">Shipping</li>
+  <li class="active">Payment</li>
+</ol>
 			<div class="col-lg-4 col-lg-offset-1">
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-3 col-lg-offset-1">
+				<h3>Shipping Address</h3>
 				<form ng-submit="shippingAddress(customer)">
-			<div class="form-group">
+			<div class="form-group2">
 		    <label for="first_name">First Name</label>
 		    <input type="text" class="form-control"  ng-model="customer.FirstName">
 		  </div>
-			<div class="form-group">
+			<div class="form-group2">
 				<label for="last_name">Last Name</label>
 				<input type="text" class="form-control" ng-model="customer.LastName">
 			</div>
-			<div class="form-group">
+			<div class="form-group2">
 				<label for="email">E-mail</label>
-				<input type="text" class="form-control" ng-model="customer.email">
+				<input type="Email" class="form-control" ng-model="customer.email">
 			</div>
-			<div class="form-group">
-				<label for="numberAndStreet">House Number and Street</label>
+			<div class="form-group2">
+				<label for="numberAndStreet">Property Number and Street</label>
 				<input type="text" class="form-control" placeholder="Street address, P.O. box"  ng-model="customer.NumberStreet">
 			</div>
-			<div class="form-group">
+			<div class="form-group2">
 				<label for="AddressTwo">Address Line 2</label>
 				<input type="text" class="form-control" placeholder="Apartment, suite, unit, building, floor, etc" ng-model="customer.AddressTwo">
 			</div>
-			<div class="form-group">
-				<label for="townCity">Town/City</label>
+			<div class="form-group2">
+				<label for="townCity">City</label>
 				<input type="text" class="form-control" ng-model="customer.townCity">
 			</div>
-			<div class="form-group">
+			<div class="form-group2">
 				<label for="state">State</label>
 				<input type="text" class="form-control" ng-model="customer.state">
 			</div>
-			<div class="form-group">
+			<div class="form-group2">
 				<label for="zipCode">Zip Code</label>
 				<input type="text" class="form-control" ng-model="customer.zipCode">
 			</div>
-			<div class="form-group">
+			<div class="form-group2">
 				<label for="country">Country</label>
 				<input type="text" class="form-control" ng-model="customer.country">
 			</div>
 				<button class="pull-right" type="submit" name="button">Continue</button>
 				</form>
+				<div class="alert alert-danger" ng-repeat='message in messages'>
+					<p ng-show='errors'> {{ message }} </p>
+				</div>
+			</div>
+			<div class="col-lg-7 col-lg-offset-1">
+				<h3>Shopping Cart</h3>
+				<div class="reviewContainer">
+					<table class="table table-sm">
+					 <tr>
+						 <th>Your shopping bag</th>
+						 <th></th>
+					 </tr>
+					 <tr ng-repeat="product in detailCart.products">
+						 <td><img class="checkOutPreviewImage" src="{{product.image[0]}}" alt=""></td>
+						 <td><div class="testingDiv">
+							 <h5>{{product.name}}</h5>
+							 <p>Details: {{product.description}}</p>
+							 <p>Size: {{product.size}}</p>
+							 <p>Qty: {{product.qty}}</p>
+							 <p>Subtotal: ${{product.subtotal}}</p>
+						 </div></td>
+					 </tr>
+					</table>
+
+					<div class="leftsideCart2">
+						<p>Shipping:</p>
+					 <p >Total:</p>
+				 </div>
+					<div class="rightsideCart2">
+					 <p>${{shippingCost}}</p>
+					 <p>${{grandTotal}}</p>
+				 </div>
+					<!-- {{shipInfo}}
+					{{detailCart}}
+					{{cookieProducts}} -->
+				</div>
 			</div>
 		</div>
+
 	</div>
 </div>

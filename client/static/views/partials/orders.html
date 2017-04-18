@@ -4,30 +4,10 @@
       <li role="presentation"><a href="#/dashboard">Dashboard</a></li>
       <li role="presentation"><a href="#/products">Products</a></li>
       <li role="presentation"><a href="#/orders">Orders</a></li>
-      <li role="presentation"><a href="#/customers">Customers</a></li>
-      <li role="presentation"><a href="#/settings">Settings</a></li>
+      <li role="presentation"><a href="#/banners">Banners</a></li>
     </ul>
   <div class="row">
-    <h3>Add a new order</h3>
-    Customers: <select ng-options="user as user.first_name for user in users" ng-model="selected.customer"></select>
-    </select>
-    Product name: <select ng-options="product as product.name for product in products track by product._id" ng-model="selected.product">
-      </select>
-    Order: <select ng-model='selected.quantity'>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-      <option value="10">10</option>
-    </select>
-      <form ng-submit='order()'>
-        <input type="submit" value="Order">
-      </form>
+    <h3>Orders pending</h3>
       <div class="alert alert-danger" ng-repeat='message in messages'>
         <p ng-show='errors'> {{ message }} </p>
       </div>
@@ -35,13 +15,30 @@
       <table class='table'>
           <tr>
             <th>Customer name</th>
-            <th>Product</th>
-            <th>Quantity</th>
-            <th>Date</th>
+            <th>Customer email</th>
+            <th>Customer shipping address</th>
+            <th>Products</th>
+            <th>Spent</th>
+            <th>Order Placed</th>
+            <th>Shipped</th>
           </tr>
-          <tr>
+           <tr ng-repeat="order in orders">
+             <td class="orderCustomerName">{{order._user.first_name | uppercase }} {{order._user.last_name | uppercase}}</td>
+             <td>{{order._user.email | uppercase}}</td>
+             <td><p>{{order._user.first_name | uppercase}} {{order._user.last_name | uppercase}}</p><p>{{order.shippingAddress[0].NumberStreet | uppercase}}</p> <p>{{order.shippingAddress[0].townCity | uppercase}}, {{order.shippingAddress[0].state | uppercase}} {{order.shippingAddress[0].zipCode | uppercase}}</p></td>
+             <td><div ng-repeat="products in order._products">
+               <div class = 'orderImagePreviewContainer'ng-repeat = "product in products.info">
+                 <a href="#edit/{{product._id}}"> {{product.name}}
+                  <img class = 'orderImagePreview' src="{{product.image[0]}}" alt=""></a>
 
-          </tr>
+               </div>
+             </div></td>
+             <td>${{order.grandTotal | number:2 }}</td>
+             <td><p>{{order.createdAt | date: 'MMM dd, yyyy' }}</p>{{order.createdAt | date: 'h:mm a' }}</td>
+             <td><input ng-model="order.status" ng-change="orderStatusChange(order)" ng-checked="order.status == 1" type="checkbox" name="" value=""></td>
+            </tr>
+
+
       </table>
     </div>
   </div>

@@ -1,0 +1,41 @@
+<div ng-controller="lookbookAdminController">
+	<div class="container">
+ 	 <ul class="nav nav-pills">
+ 		 <li role="presentation"><a href="#/dashboard">Dashboard</a></li>
+ 		 <li role="presentation"><a href="#/products">Products</a></li>
+ 		 <li role="presentation"><a href="#/orders">Orders</a></li>
+ 		 <li role="presentation"><a href="#/banners">Banners</a></li>
+		 <li role="presentation"><a href="#/lookbookAdmin">Lookbook</a></li>
+ 	 </ul>
+ 	 <a href="/" ng-click='logout()'>logout</a>
+	 <div class="row">
+	 	<div class="col-lg-6">
+	 		<h4>Create a new lookbook</h4>
+			<div class="alert alert-danger" ng-repeat='message in messages'>
+				<p ng-show='errors'> {{ message }} </p>
+			</div>
+			<form class="form-horizontal" ng-submit="createLookbook()">
+				<div class="form-group">
+					<label class="control-label">Title</label>
+					<input type="text" name="" value="" ng-model="lookbook.title">
+					<br>
+					<label class="control-label">Description</label><br>
+					<textarea ng-model = "lookbook.description" name="name" rows="3" cols="80"></textarea>
+
+					<div class="dropzone dz-clickable customDrop" id="myDropzone" dropzone="dropzoneConfig">
+						<div class="dz-message dropzoneBox">Drop files here or click to upload.</div>
+					</div>
+				</div>
+				<input type="submit" value='Create'></input>
+			</form>
+	 	</div>
+		<div class="col-lg-6">
+			<div class="lookbookAdminPreview" ng-repeat="lookbook in lookbooks">
+				<a href="#/lookbookEdit/{{lookbook._id}}"><p>{{lookbook.title}}</p>
+	<img src="{{lookbook.image[0]}}" alt=""></a>
+
+		</div>
+		</div>
+	 </div>
+ </div>
+</div>

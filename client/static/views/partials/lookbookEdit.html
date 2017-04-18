@@ -1,0 +1,26 @@
+<div ng-controller="lookbookEditController">
+	<ul class="nav nav-pills">
+		<li role="presentation"><a href="#/dashboard">Dashboard</a></li>
+		<li role="presentation"><a href="#/products">Products</a></li>
+		<li role="presentation"><a href="#/orders">Orders</a></li>
+		<li role="presentation"><a href="#/banners">Banners</a></li>
+		<li role="presentation"><a href="#/lookbookAdmin">Lookbook</a></li>
+	</ul>
+	<div class="row">
+		<div class="col-lg-9">
+			<div ng-repeat="image in lookbook.image">
+				<img src="{{image}}" alt="">
+			</div>
+		</div>
+		<div class="-col-lg-3">
+			<!-- <form ng-submit="update(image)">
+				<ul id="lookbookimageprev" class="lookbookimagePreview" ng-repeat="image in lookbook.image">
+					<li><img src="{{image}}" alt="">
+					<input ng-model="image" type="text" name="" value=""></li>
+				</ul>
+				<input type="submit" value="Update">
+			</form> -->
+			<button type="button" name="button" ng-click="deleteLookbook()">Delete</button>
+			</div>
+		</div>
+	</div>

@@ -9,8 +9,24 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
       }
     )
   }
-  factory.getTops = function(callback){
-    $http.get('/getTops')
+  factory.getSoldOutProducts = function(callback){
+    $http.get('/getSoldOutProducts')
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
+  factory.getShirts = function(callback){
+    $http.get('/getShirts')
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
+  factory.getOuterwear = function(callback){
+    $http.get('/getOuterwear')
     .then(
       function(result){
         callback(result)
@@ -77,7 +93,6 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
     )
   }
   factory.findCartProducts = function(cart, callback){
-    console.log(cart);
     $http.post('/findCartProducts', cart )
     .then(
       function(result){
@@ -94,7 +109,6 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
     )
   }
   factory.removeFromCart = function(allProduct, callback){
-    console.log(allProduct);
     $http.post('/findCartProducts', allProduct)
     .then(
       function(result){

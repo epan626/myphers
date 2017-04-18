@@ -6,27 +6,62 @@
   width: 28%
 }*/
 
+.thankContainer{
+  /*border-bottom: 1px solid black;*/
+}
 
+.thankContainer h3{
+  text-align: center;
+}
+
+.cartIcon{
+  width: 30px;
+}
+
+.cartIconContainer{
+   text-align: right;
+}
+.banners img{
+  height: auto;
+  width:auto\9;
+  max-width:100%;
+}
 .newArrivals {
   margin: 5px;
   display: inline-block;
 }
 
 div.newArrivals img {
-  width: 250px;
-  height: 300px;
+  width: 243px;
+  height: 364px;
 }
 div.photo a.imglink img.newpicture {
   width: 250px;
   height: 200px;
 }
 
-.imagepreview {
+.imagepreview, .bannerPreview {
   display: inline-block;
 }
 
 div.imagepreview img {
   width: 100%;
+}
+/* banner images should be around 1024x215  */
+div.bannerPreviewBorder img {
+  width: 100%;
+  /* height should be auto later */
+  height: auto;
+}
+.bannerPreviewBorder{
+  margin: 5px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 2px;
+  display: inline-block;
+  width: 1000px;
+  height: auto;
+  vertical-align: top;
 }
 
 .newArrivalsArrows{
@@ -61,12 +96,11 @@ div.imagepreview img {
 .editImage img {
   width: 340px;
   height: 480px;
-   border: 1px solid;
+  border: 1px solid;
 }
 
 .retailImage{
-  width: 390px;
-  height: 480px;
+  width: 75%;
 }
 
 
@@ -105,8 +139,9 @@ div.imagepreview img {
 }
 
 .checkoutImage{
-  width: 100px;
-  height: 100px;
+  width: 170px;
+  height: auto;
+  /*height: 100px;*/
 }
 
 .dropzoneBox{
@@ -144,11 +179,22 @@ div.imagepreview img {
   margin-bottom: -25px;
   margin-top: -40px;
 }
+.navOptions a:hover{
+  color: #600bc6 !important;
+  background-color: white !important
+}
 
-.frontLogo{
-  background-color: red;
+.navOptions a:focus{
+   background-color: white !important
+}
+
+
+
+
+
+.frontBanner img{
   width: 100%;
-  height: 250px;
+  height: 600px;
   margin-top: 10px;
 }
 
@@ -166,8 +212,8 @@ div.imagepreview img {
 }
 
 .productImages{
-  width: 275px;
-  height: 320px;
+  width: 243px;
+  height: 364px;
   display: inline-block;
   /*border: 1px solid black;*/
   vertical-align: top;
@@ -175,8 +221,25 @@ div.imagepreview img {
 }
 
 .productImages img{
-  width: 250px;
-  height: 250px;
+  width: 243px;
+  height: 364px;
+}
+
+#mainRetailImage:hover{
+  position: relative;
+   -webkit-transform: scale(1.2);
+   -ms-transform: scale(1.3);
+   -o-transform: scale(1.3);
+   transform: scale(1.3);
+   z-index: 1000;
+   margin-bottom: 50px;
+}
+* {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .productImagesContainer{
@@ -198,8 +261,12 @@ div.imagepreview img {
 }
 
 .checkOutPreviewImage{
-  width: 125px;
-  height: 120px;
+  width: 155px;
+  /*height: 120px;*/
+}
+
+.searchName{
+  margin-left: -30px;
 }
 
 /*.cardInfo input{
@@ -208,19 +275,174 @@ div.imagepreview img {
 
 }*/
 
+
 .cardInfo{
   margin-top: 60px;
-  border: 1px solid black;
-  border-radius: 25px;
+  border: 1px solid gray;
+  border-radius: 5px;
   padding: 0px 25px 45px 15px;
+   text-align: center;
 }
 
-.cardInfo button{
-  float: right;
+
+.cardInfo input{
+  width: 80%;
+  margin: 5px;
+}
+
+.cardInfo h3{
+  text-align: center;
 }
 
 .changeButton{
   font-size: 12px;
   font-weight: normal;
   color: blue;
+}
+
+#cardBottomInfo input{
+  width: 39%;
+  display: inline-block;
+  margin: 0 auto;
+
+}
+.payButton{
+  margin-top: 25px;
+  width: 80% !important;
+}
+
+/*Orders.html*/
+.orderCustomerName{
+  font-weight: bold;
+  font-family: Georgia;
+}
+
+.orderImagePreview{
+  width: 50px;
+  height: 50px;
+}
+
+
+/* shipping.html */
+.form-group2{
+  margin-bottom: 5px;
+}
+
+
+
+/* shipping.html & billing.html */
+
+.breadCrumbs{
+  padding: 8px 15px;
+  margin-bottom: 10px;
+  list-style: none;
+}
+
+.breadCrumbs li{
+  display: inline-block;
+}
+
+.breadCrumbs .active{
+  color: lightgray;
+}
+
+.breadCrumbs li + li:before {
+    padding: 0 5px;
+    color: #ccc;
+    content: "/\00a0";
+}
+
+.leftsideCart2{
+  width:25%;
+  display: inline-block;
+   margin: 10px;
+}
+.leftsideCart2 p{
+  text-align: center;
+}
+.leftsideCart2, .rightsideCart2{
+  border-top: 1px solid black;
+}
+
+
+.rightsideCart2{
+vertical-align: top;
+ width:60%;
+ display: inline-block;
+ margin: 10px;
+}
+
+
+
+
+.warn1{
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.warn2{
+  vertical-align: top;
+  font-size: 10px;
+
+}
+
+/* lookbook.html */
+
+.customDrop div{
+  padding: 100px 20px 100px 20px;
+  text-align: center;
+
+}
+
+.lookbookAdminPreview img, .lookbookAdminPreview{
+  width: 150px;
+  margin: 20px;
+  display: inline-block;
+
+}
+
+.lookbookAdminPreview{
+  text-align: center;
+}
+
+.lookbookAdminPreview img{
+  border: 1px solid black;
+}
+
+.lookbookimagePreview img{
+  width: 150px;
+  height: 100px;
+}
+
+.lookbookCovers img{
+  width: 550px;
+  height: 400px;
+  margin: auto;
+  display: block;
+}
+
+.lookbookCovers h3 {
+  text-align: center;
+}
+
+.lookbookImagesContainer img{
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  width:auto\9;
+  max-width:100%;
+}
+.lookbookImagesContainer{
+  margin: 5px;
+}
+
+.lookbookImagesContainerFront img{
+  margin: auto;
+  display: inline-block;
+
+}
+
+.lookbookImagesContainerFront{
+  margin: 15px;
 }

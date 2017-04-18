@@ -15,7 +15,6 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
   };
 
   $scope.createProduct = function(){
-    console.log($scope.product.price);
     $scope.messages = [];
     $scope.errors = false;
     if($scope.product==undefined){
@@ -52,10 +51,10 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
       }
     }
   }
-
-  $scope.reset = function(){
-    $scope.dropzone.removeAllFiles()
-  }
+  //
+  // $scope.reset = function(){
+  //   $scope.dropzone.removeAllFiles()
+  // }
 
   $scope.getProducts = function () {
     productFactory.getProducts(function(data){
@@ -63,6 +62,13 @@ app.controller('productController', ['productFactory', '$scope', '$location', '$
     })
   }
   $scope.getProducts()
+
+  var getSoldOutProducts = function(){
+    productFactory.getSoldOutProducts(function(data){
+      $scope.soldOutProducts = data.data
+    })
+  }
+  getSoldOutProducts()
 
   $scope.edit = function(){
     productFactory.edit($scope.product)

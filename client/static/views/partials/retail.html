@@ -2,25 +2,40 @@
 	<div class="container">
 		<div class="row">
 			<div class="logohead">
-				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/">Myphers</a></header>
+				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/"><img class ="myphersLogo" src="/myphers.jpg" alt="myphers"></a></header>
 			</div>
 		</div>
+		<!-- Main navbar -->
 		<div class="row">
-			<div class="col-lg-7 col-lg-offset-4 text-center">
-				<ul class="nav nav-pills">
-					<li role="presentation"><a ng-click="showNav=!showNav" href="">Shop</a></li>
-					<li role="presentation"><a href="#/lookbook">Lookbook</a></li>
-					<li role="presentation"><a href="#/models">Models</a></li>
-					<li role="presentation"><a href="#/register">Register / Log in</a></li>
+			<div class="col-lg-4 col-lg-offset-5 navBar">
+				<ul class="nav nav-pills ">
+					<li class="navOptions" role="presentation"><a ng-click="showNav=!showNav" href="">Shop</a></li>
+					<li class="navOptions" role="presentation"><a href="#/lookbooks">Lookbook</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-1">
-				<a href="#/cart">Cart</a>
+			<div class="col-lg-1 col-lg-offset-2 cartIconContainer">
+				<a href="#/cart"><img class="cartIcon" src="cart.png" alt="cart"></a>
 			</div>
 		</div>
+		<!-- shop navbar -->
+		<div class="row">
+
+				<div class="row">
+					<div class="col-lg-7 col-lg-offset-4 text-center">
+						<div ng-show="showNav">
+							<ul class="nav nav-pills">
+								<li class="navOptions" role="presentation"><a href="#/all">All</a></li>
+								<li class="navOptions" role="presentation"><a href="#/shirts">Shirts</a></li>
+								<li class="navOptions" role="presentation"><a href="#/bottoms">Bottoms</a></li>
+								<li class="navOptions" role="presentation"><a href="#/outerwear">Outerwear</a></li>
+								<li class="navOptions" role="presentation"><a href="#/accessories">Accessories</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
 		<div class="retailContentContainer">
 			<div class="row">
-				<div class="col-lg-4 col-lg-offset-1 retailImageContainer">
+				<div class="col-lg-5 col-lg-offset-1 retailImageContainer">
 					<img id="mainRetailImage" class="retailImage" src="{{products[0].image[0]}}" alt="{{products[0].name}}">
 					<div class="previewRetailImageContainer">
 						<div class="previewRetailImage" ng-repeat="product in products[0].image" ng-click="changeMainRetailImage(product)">
@@ -28,7 +43,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="retailDetailsContent col-lg-5 col-lg-offset-1">
+				<div class="retailDetailsContent col-lg-5">
 					<h4 class="retailDetails">{{products[0].name}}</h4>
 					<h4 class="retailDetails">${{products[0].price}}</h4>
 					<h5 ng-if="products[0].inventory==1" class="retailDetails" ng-model=quantityOption> Quantity: 1</h5>

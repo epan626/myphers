@@ -5,44 +5,38 @@
 				 <header class = 'col-lg-4 logo text-center col-lg-offset-4'><a href="/"><img class ="myphersLogo" src="/myphers.jpg" alt="myphers"></a></header>
 			</div>
 		</div>
-	<!-- Main navbar -->
+		<!-- Main navbar -->
 		<div class="row">
-			<div class="col-lg-7 col-lg-offset-4 text-center">
-				<ul class="nav nav-pills">
-					<li role="presentation"><a ng-click="showNav=!showNav" href="">Shop</a></li>
-					<li role="presentation"><a href="#/lookbook">Lookbook</a></li>
-					<li role="presentation"><a href="#/register">Register / Log in</a></li>
+			<div class="col-lg-4 col-lg-offset-5 navBar">
+				<ul class="nav nav-pills ">
+					<li class="navOptions" role="presentation"><a ng-click="showNav=!showNav" href="">Shop</a></li>
+					<li class="navOptions" role="presentation"><a href="#/lookbooks">Lookbook</a></li>
 				</ul>
 			</div>
-			<div class="col-lg-1">
-				<a href="#/cart">Cart</a>
+			<div class="col-lg-1 col-lg-offset-2 cartIconContainer">
+				<a href="#/cart"><img class="cartIcon" src="cart.png" alt="cart"></a>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-10 col-lg-offset-1">
-				<div class="row">
-					<div class="col-lg-8 col-lg-offset-4 text-center">
-						<div ng-show="showNav">
-							<ul class="nav nav-pills">
-								<li role="presentation"><a href="#/all">All</a></li>
-								<li role="presentation"><a href="#/tops">Tops</a></li>
-								<li role="presentation"><a href="#/bottoms">Bottoms</a></li>
-								<li role="presentation"><a href="#/accessories">Accessories</a></li>
-							</ul>
-						</div>
+			<div class="row">
+				<div class="col-lg-7 col-lg-offset-4 text-center">
+					<div ng-show="showNav">
+						<ul class="nav nav-pills">
+							<li class="navOptions" role="presentation"><a href="#/all">All</a></li>
+							<li class="navOptions" role="presentation"><a href="#/shirts">Shirts</a></li>
+							<li class="navOptions" role="presentation"><a href="#/bottoms">Bottoms</a></li>
+							<li class="navOptions" role="presentation"><a href="#/outerwear">Outerwear</a></li>
+							<li class="navOptions" role="presentation"><a href="#/accessories">Accessories</a></li>
+						</ul>
 					</div>
 				</div>
-				<div class="bottomsLogo">
-
-				</div>
 			</div>
+				<div class="banners">
+					<img src="{{bottomsBanner}}" alt="">
+				</div>
 		</div>
 		<div class="row">
 			<div class="productImagesContainer col-lg-12">
-				<!-- <div class="productImages" ng-repeat="product in newProducts | limitTo: 4 : productIndex">
-					<a href="#/retail/{{product._id}}"><img src="{{product.image[0]}}" alt="{{product.name}}"></a>
-				</div> -->
-
 				<div class="productImages" ng-repeat="product in products">
 					<div class="">
 						<a href="#/retail/{{product._id}}"><img src="{{product.image[0]}}" alt="{{product.name}}">

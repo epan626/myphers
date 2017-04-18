@@ -1,39 +1,48 @@
 app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, $routeParams, $location, $cookies){
   var cookieProducts = $cookies.getObject('cookieProducts')
 	var findCartProducts = function(){
-    $scope.grandTotal  = 0
+    $scope.grandTotal  = 0.00
 		productFactory.findCartProducts(cookieProducts, function(result){
 			$scope.detailCart = result.data
-      console.log($scope.detailCart);
+      console.log(result.data);
       for(var x = 0; x<$scope.detailCart.products.length; x++){
-        $scope.grandTotal += parseInt($scope.detailCart.products[x].subtotal)
+        if ($scope.grandTotal == 0.00) {
+          $scope.grandTotal = parseFloat($scope.detailCart.products[x].subtotal)
+        } else {
+           $scope.grandTotal += parseFloat($scope.detailCart.products[x].subtotal)
+        }
+
       }
-      $scope.shippingCost = ($scope.detailCart.shippingCost).toFixed(2)
-      $scope.grandTotal = (parseInt($scope.grandTotal)+parseInt($scope.shippingCost)).toFixed(2)
+      $scope.shippingCost = (parseFloat($scope.detailCart.shippingCost)).toFixed(2)
+      $scope.grandTotal = $scope.grandTotal + $scope.detailCart.shippingCost
+
 		})
 	}
 	findCartProducts()
 
   $scope.removeFromCart = function(product){
-    $scope.shippingCost = 0
     var allProduct = $cookies.getObject('cookieProducts')
     var id = product._id
 
     if(id in allProduct){
       delete allProduct[id]
-      product.hide=true
+      $cookies.putObject('cookieProducts', allProduct)
     }
     productFactory.removeFromCart(allProduct, function(result){
-      $cookies.putObject('cookieProducts', allProduct)
-      $scope.grandTotal  = 0
       $scope.detailCart = result.data
+      $scope.grandTotal = 0.00
       for(var x = 0; x<$scope.detailCart.products.length; x++){
-        $scope.grandTotal += parseInt($scope.detailCart.products[x].subtotal)
+        if ($scope.grandTotal == 0.00) {
+          $scope.grandTotal = parseFloat($scope.detailCart.products[x].subtotal)
+        } else {
+           $scope.grandTotal += parseFloat($scope.detailCart.products[x].subtotal)
+        }
+
       }
-      $scope.grandTotal += result.data.shippingCost
-      $scope.shippingCost = (result.data.shippingCost).toFixed(2)
-      $scope.grandTotal = ($scope.grandTotal).toFixed(2)
-    })
+      $scope.shippingCost = (parseFloat($scope.detailCart.shippingCost)).toFixed(2)
+      $scope.grandTotal = $scope.grandTotal + $scope.detailCart.shippingCost
+
+      })
   }
 
   $scope.updateCart = function(newQuantity){
@@ -47,7 +56,7 @@ app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$ro
       }
     }
     if($scope.errors == false){
-      $scope.grandTotal  = 0
+      $scope.grandTotal  = 0.00
       for(var i = 0; i<newQuantity.length; i++){
         var id = newQuantity[i]._id
         if(newQuantity[i].qty > 0) {
@@ -58,11 +67,11 @@ app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$ro
   		productFactory.findCartProducts(newProducts, function(result){
   			$scope.detailCart = result.data
         for(var x = 0; x<$scope.detailCart.products.length; x++){
-          $scope.grandTotal += parseInt($scope.detailCart.products[x].subtotal)
+          $scope.grandTotal += parseFloat($scope.detailCart.products[x].subtotal)
         }
         $scope.shippingCost = (result.data.shippingCost).toFixed(2)
 
-        $scope.grandTotal = $scope.grandTotal + parseInt(result.data.shippingCost)
+        $scope.grandTotal = $scope.grandTotal + parseFloat(result.data.shippingCost)
         $scope.grandTotal = ($scope.grandTotal).toFixed(2)
   		})
     }

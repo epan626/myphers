@@ -3,10 +3,10 @@ var mongoose = require('mongoose'),
 
 var OrderSchema = new mongoose.Schema({
   _user: {type: Schema.Types.ObjectId, ref: 'User'},
-  _product: {type: Schema.Types.ObjectId, ref: 'Product'},
-  customer: {type: String, require:true},
-  product: {type: String, require:true},
-  quantity: {type: Number, require:true}
+  _products: {type: Array},
+  shippingAddress: {type: Array},
+  grandTotal: {type: String},
+  status: {type: Boolean, default: false}
 }, {timestamps: true});
 
 

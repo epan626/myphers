@@ -4,6 +4,8 @@ var editProduct = require('../controllers/productEditControllerS.js');
 var User = require('../controllers/userControllerS.js');
 var Order = require('../controllers/orderControllerS.js');
 var Checkout = require('../controllers/checkoutControllerS.js')
+var Banner = require('../controllers/bannerController.js')
+var Lookbook = require('../controllers/lookbookController.js')
 // var multer = require('multer');
 // var upload = multer({dest: 'uploads/'});
 var fs = require('fs');
@@ -16,8 +18,44 @@ module.exports = function(app){
   app.get('/getProducts', function(req, res){
     Product.getProducts(req, res)
   })
-  app.get('/getTops', function(req, res){
-    Product.getTops(req, res)
+  app.get('/getOrders', function(req, res){
+    Order.getOrders(req, res)
+  })
+  app.put('/orderStatusChange', function(req, res){
+    Order.orderStatusChange(req, res)
+  })
+  app.get('/getBanners', function(req, res){
+    Banner.getBanners(req, res)
+  })
+  app.get('/getLookbooks', function(req, res){
+    Lookbook.getLookbooks(req, res)
+  })
+  app.get('/getAllProductsBanners', function(req, res){
+    Banner.getAllProductsBanners(req, res)
+  })
+  app.get('/getFrontProductsBanners', function(req, res){
+    Banner.getFrontProductsBanners(req, res)
+  })
+  app.get('/getAccessoriesProductsBanners', function(req, res){
+    Banner.getAccessoriesProductsBanners(req, res)
+  })
+  app.get('/getShirtProductsBanners', function(req, res){
+    Banner.getShirtProductsBanners(req, res)
+  })
+  app.get('/getBottomProductsBanners', function(req, res){
+    Banner.getBottomProductsBanners(req, res)
+  })
+  app.get('/getOuterwearProductsBanners', function(req, res){
+    Banner.getOuterwearProductsBanners(req, res)
+  })
+  app.get('/getSoldOutProducts', function(req, res){
+    Product.getSoldOutProducts(req, res)
+  })
+  app.get('/getShirts', function(req, res){
+    Product.getShirts(req, res)
+  })
+  app.get('/getOuterwear', function(req, res){
+    Product.getOuterwear(req, res)
   })
   app.get('/getBottoms', function(req, res){
     Product.getBottoms(req, res)
@@ -33,6 +71,9 @@ module.exports = function(app){
   })
   app.delete('/deleteProduct/:id', function(req, res){
     editProduct.deleteProduct(req, res)
+  })
+  app.delete('/deleteLookbook/:id', function(req, res){
+    Lookbook.deleteLookbook(req, res)
   })
   app.post('/add', function(req, res){
     User.create(req, res)
@@ -52,9 +93,6 @@ module.exports = function(app){
   app.put('/orderProduct', function(req, res){
     Order.orderproduct(req, res)
   })
-  app.get('/showallorders', function(req, res){
-    Order.showallorders(req, res)
-  })
   app.get('/populateNewArrivals', function(req, res){
     Product.populateNewArrivals(req, res)
   })
@@ -64,10 +102,22 @@ module.exports = function(app){
   app.post('/upload_pic', function(req, res){
     Product.createNewProduct(req, res)
   })
+  app.post('/upload_banner', function(req, res){
+    Banner.createBanner(req, res)
+  })
+  app.post('/upload_lookbook', function(req, res){
+    Lookbook.createLookbook(req, res)
+  })
   app.post('/handleStripe', function(req, res){
     Checkout.charge(req, res)
-  });
+  })
   app.put('/changeMainEditImage', function(req, res){
     editProduct.changeMainEditImage(req, res)
+  })
+  app.get('/lookbookEditPage/:id', function(req, res){
+    Lookbook.lookbookEditPage(req, res)
+  })
+  app.get('/getSingleLookbook/:id', function(req, res){
+    Lookbook.getSingleLookbook(req, res)
   })
 }

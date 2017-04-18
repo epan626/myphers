@@ -1,4 +1,4 @@
-app.controller('bottomsController', ['$scope', '$rootScope', 'productFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, $routeParams, $location, $cookies){
+app.controller('bottomsController', ['$scope', '$rootScope', 'productFactory', 'bannerFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, bannerFactory, $routeParams, $location, $cookies){
   var cookieProducts = $cookies.getObject('cookieProducts')
 	$scope.products = []
 	$scope.cart = {}
@@ -8,6 +8,13 @@ app.controller('bottomsController', ['$scope', '$rootScope', 'productFactory', '
 		// $scope.cartLength = Object.keys($scope.cart).length
 	}
 		populateCart()
+
+    var getBottomProductsBanners = function(){
+      bannerFactory.getBottomProductsBanners(function(data){
+        $scope.bottomsBanner = data.data[0].image[0]
+      })
+    }
+    getBottomProductsBanners()
 
 		$scope.getBottoms = function () {
 	    productFactory.getBottoms(function(data){

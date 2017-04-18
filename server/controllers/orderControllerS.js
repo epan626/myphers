@@ -32,13 +32,65 @@ module.exports = {
         }
       })
     },
-  showallorders: function(req, res){
-    Order.find({}, function(err, orders){
+  getOrders: function(req, res){
+    Order.find({})
+    .sort({createdAt: 'desc'})
+    .populate('_user').exec(function(err, orders){
       if(err){
        console.log('error locating all orders')
      } else {
-       res.json(orders)
+       for (let i = 0; i < orders.length; i++) {
+        for (let x = 0; x < orders[i]._products.length; x++) {
+          let temp = Object.keys(orders[i]._products[x])
+          console.log(temp);
+         Product.find({_id: {$in: temp}}).lean().exec(function(err, product){
+           if(err){
+             console.error(err);
+           } else {
+              orders[i]._products[x].info = []
+             for (var e = 0; e < product.length; e++) {
+               console.log(product[e].info, product[e]);
+
+
+               orders[i]._products[x].info.push(product[e])
+              //  console.log(orders[i]._products[x].name);
+               if(orders[i]._products[x+1]==null){
+                 if(orders[i+1]==null){
+                   res.json(orders)
+                 }
+               }
+             }
+           }
+         })
+        }
+       }
      }
-    })
-  }
+   })
+ },
+ orderStatusChange: function(req, res){
+   var status = false
+   console.log(req.body.status);
+   if(req.body.status == false){
+     status = false
+   } else {
+     status = true
+   }
+   Order.update({_id: req.body._id}, {status: status}, function(err, order){
+     if(err){
+       console.error(err);
+     } else {
+       console.log(status);
+       Order.find({})
+       .sort({createdAt: 'desc'})
+       .populate('_user').exec(function(err, orders){
+         if (err) {
+           console.log(err);
+         } else {
+           res.json(orders)
+         }
+       });
+     }
+   })
+  console.log(req.body._id);
+ }
 };

@@ -23,8 +23,14 @@ app.config(function($routeProvider) {
     .when('/products',{
       templateUrl: '/products.html',
     })
+    .when('/banners',{
+      templateUrl: '/banners.html',
+    })
     .when('/edit/:id', {
       templateUrl: '/edit.html',
+    })
+    .when('/lookbookEdit/:id', {
+      templateUrl: 'lookbookEdit.html'
     })
     .when('/customers',{
       templateUrl: '/customers.html',
@@ -47,11 +53,14 @@ app.config(function($routeProvider) {
     .when('/all',{
       templateUrl:'/all.html'
     })
-    .when('/tops',{
-      templateUrl:'/tops.html'
+    .when('/shirts',{
+      templateUrl:'/shirts.html'
     })
     .when('/bottoms',{
       templateUrl:'/bottoms.html'
+    })
+    .when('/outerwear',{
+      templateUrl: '/outerwear.html'
     })
     .when('/accessories',{
       templateUrl:'/accessories.html'
@@ -61,6 +70,15 @@ app.config(function($routeProvider) {
     })
     .when('/billing',{
       templateUrl: '/billing.html'
+    })
+    .when('/lookbookAdmin',{
+      templateUrl: 'lookbookAdmin.html'
+    })
+    .when('/lookbooks',{
+      templateUrl: 'lookbooks.html'
+    })
+    .when('/lookbook/:id',{
+      templateUrl: 'lookbook.html'
     })
 });
 
@@ -79,27 +97,54 @@ app.directive('dropzone', function(){
     var flag = false
   dropzone.on("sending", function (file, xhr, formData) {
     if(flag == false){
-      formData.append("name", scope.product.name)
-      formData.append("description", scope.product.description)
-      formData.append("inventory", scope.product.inventory)
-      formData.append("price", scope.product.price)
-      formData.append("category", scope.product.category)
-      formData.append("size", scope.product.size)
-      flag = true
+      if(scope.product){
+        formData.append("name", scope.product.name)
+        formData.append("description", scope.product.description)
+        formData.append("inventory", scope.product.inventory)
+        formData.append("price", scope.product.price)
+        formData.append("category", scope.product.category)
+        formData.append("size", scope.product.size)
+        flag = true
+      }
+      else if(scope.banner){
+        formData.append("category", scope.banner.category)
+        flag = true
+      }
+      else if(scope.lookbook){
+        formData.append("title", scope.lookbook.title)
+        formData.append("description", scope.lookbook.description)
+        flag = true
+      }
     }
 
   })
 
   dropzone.on("complete", function(file, xhr, formData){
-    scope.getProducts()
-    scope.product.name = ""
-    scope.product.description = ""
-    scope.product.inventory = 1
-    scope.product.price = 0
-    scope.product.category = ""
-    scope.product.size = ""
-    flag = false
-    dropzone.removeAllFiles()
+    if(scope.product){
+      scope.getProducts()
+      scope.product.name = ""
+      scope.product.description = ""
+      scope.product.inventory = 1
+      scope.product.price = 0
+      scope.product.category = ""
+      scope.product.size = ""
+      flag = false
+      dropzone.removeAllFiles()
+    }
+    else if(scope.banner){
+      scope.getBanners()
+      scope.banner.category = ""
+      flag = false
+      dropzone.removeAllFiles()
+    }
+    else if(scope.lookbook){
+      scope.getLookbooks()
+      scope.lookbook.title = ""
+      scope.lookbook.description = ""
+      flag = true
+      dropzone.removeAllFiles()
+    }
+
   })
 
   scope.dropzone = dropzone;

@@ -1,0 +1,100 @@
+<div ng-controller='bannersController'>
+	<div class="container">
+		<div class="row">
+			<ul class="nav nav-pills">
+	      <li role="presentation"><a href="#/dashboard">Dashboard</a></li>
+	      <li role="presentation"><a href="#/products">Products</a></li>
+	      <li role="presentation"><a href="#/orders">Orders</a></li>
+	      <li role="presentation"><a href="#/banners">Banners</a></li>
+				<li role="presentation"><a href="#/lookbookAdmin">Lookbook</a></li>
+	    </ul>
+		</div>
+		<div class="row">
+			<div class='content row col-lg-12'>
+				<div class="col-lg-2">
+					<br><br>
+					<h5>Add a new banner</h5>
+					<div class="alert alert-danger" ng-repeat='message in messages'>
+						<p ng-show='errors'> {{ message }} </p>
+					</div>
+					<form class="form-horizontal" ng-submit="createBanner()">
+						<div class="form-group">
+							<label for="banner" class="control-label">Category</label>
+							<select class="form-control" name="category" ng-options="category as category for category in bannerCat" ng-model ="banner.category">
+							</select>
+							<div class="dropzone dz-clickable" id="myDropzone" dropzone="dropzoneConfig">
+								<div class="dz-message dropzoneBox">Drop files here or click to upload.</div>
+							</div>
+						</div>
+						<input type="submit" value='Create'></input>
+					</form>
+				</div>
+				<div class="col-lg-10">
+					<h3>Banners</h3>
+					<br><br>
+					<h4>Front Page</h4>
+					<div class=" bannerPreview">
+						<div class='bannerPreviewBorder'>
+							<a href="#/edit/{{banner._id}}"><img src="{{frontBanner}}" alt="">
+							</a>
+						</div>
+					</div>
+					<h4>All</h4>
+					<div class=" bannerPreview">
+						<div class='bannerPreviewBorder'>
+							<a href="#/edit/{{banner._id}}"><img src="{{allBanner}}" alt="">
+							</a>
+						</div>
+					</div>
+					<h4>Shirts</h4>
+					<div class=" bannerPreview">
+						<div class='bannerPreviewBorder'>
+							<a href="#/edit/{{banner._id}}"><img src="{{shirtBanner}}" alt="">
+							</a>
+						</div>
+					</div>
+					<h4>Outerwear</h4>
+					<div class=" bannerPreview">
+						<div class='bannerPreviewBorder'>
+							<a href="#/edit/{{banner._id}}"><img src="{{outerwearBanner}}" alt="">
+							</a>
+						</div>
+					</div>
+					<h4>Bottoms</h4>
+					<div class=" bannerPreview">
+						<div class='bannerPreviewBorder'>
+							<a href="#/edit/{{banner._id}}"><img src="{{bottomsBanner}}" alt="">
+							</a>
+						</div>
+					</div>
+					<h4>Accessories</h4>
+					<div class=" bannerPreview">
+						<div class='bannerPreviewBorder'>
+							<a href="#/edit/{{banner._id}}"><img src="{{accessoriesBanner}}" alt="">
+							</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div id="preview-template" style="display:none;">
+			<div class="dz-preview dz-file-preview">
+				<div class="dz-details">
+					<div class="dz-filename"><span data-dz-name></span></div>
+					<div class="dz-size" data-dz-size></div>
+					<img data-dz-thumbnail />
+				</div>
+				<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+				<div class="dz-success-mark"><span>✔</span></div>
+				<div class="dz-error-mark"><span>✘</span></div>
+				<div class="dz-error-message"><span data-dz-errormessage></span></div>
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			Dropzone.autoDiscover = false;
+		</script>
+		</div>
+	</div>
+</div>

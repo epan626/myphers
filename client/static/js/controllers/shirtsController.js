@@ -1,4 +1,4 @@
-app.controller('topsController', ['$scope', '$rootScope', 'productFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, $routeParams, $location, $cookies){
+app.controller('shirtsController', ['$scope', '$rootScope', 'productFactory', 'bannerFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, bannerFactory, $routeParams, $location, $cookies){
   var cookieProducts = $cookies.getObject('cookieProducts')
 	$scope.products = []
 	$scope.cart = {}
@@ -9,13 +9,19 @@ app.controller('topsController', ['$scope', '$rootScope', 'productFactory', '$ro
 	}
 		populateCart()
 
-		$scope.getTops = function () {
-	    productFactory.getTops(function(data){
+    var getShirtProductsBanners = function(){
+      bannerFactory.getShirtProductsBanners(function(data){
+        $scope.shirtBanner = data.data[0].image[0]
+      })
+    }
+    getShirtProductsBanners()
+
+		$scope.getShirts = function () {
+	    productFactory.getShirts(function(data){
 	      $scope.products = data.data;
-				console.log($scope.products);
 	    })
 	  }
-	  $scope.getTops()
+	  $scope.getShirts()
 
 
 

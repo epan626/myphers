@@ -1,4 +1,4 @@
-app.controller('allController', ['$scope', '$rootScope', 'productFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, $routeParams, $location, $cookies){
+app.controller('allController', ['$scope', '$rootScope', 'productFactory', 'bannerFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, bannerFactory, $routeParams, $location, $cookies){
   var cookieProducts = $cookies.getObject('cookieProducts')
 	$scope.products = []
 	$scope.cart = {}
@@ -8,6 +8,14 @@ app.controller('allController', ['$scope', '$rootScope', 'productFactory', '$rou
 		// $scope.cartLength = Object.keys($scope.cart).length
 	}
 		populateCart()
+
+    var getAllProductsBanners = function(){
+      bannerFactory.getAllProductsBanners(function(data){
+        $scope.allProductBanner = data.data
+        console.log($scope.allProductBanner);
+      })
+    }
+    getAllProductsBanners()
 
 		$scope.getProducts = function () {
 	    productFactory.getProducts(function(data){

@@ -1,4 +1,4 @@
-app.controller('checkoutController', ['$scope', 'productFactory', 'checkoutFactory', 'userFactory', '$routeParams', '$location', '$cookies', function($scope, productFactory, checkoutFactory,  userFactory, $routeParams, $location, $cookies){
+app.controller('checkoutController', ['$scope', '$rootScope', 'productFactory', 'checkoutFactory', 'userFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope,productFactory, checkoutFactory,  userFactory, $routeParams, $location, $cookies){
 
   $scope.cookieProducts = $cookies.getObject('cookieProducts')
   $scope.shipInfo = $cookies.getObject('shipInfo')
@@ -8,42 +8,39 @@ app.controller('checkoutController', ['$scope', 'productFactory', 'checkoutFacto
   $scope.handleStripe = function(status, response){
     $scope.messages = []
     $scope.errors = false
-    console.log(status);
 	  if(response.error || status == 400) {
       $scope.messages.push("Invalid Credit Card")
 			$scope.errors = true
       } else {
-        console.log(status);
-        console.log(response);
 			  token = response.id
 				checkoutFactory.handleStripe(token, $scope.shipInfo, $scope.name, $scope.cookieProducts, function(result){
-					console.log(result);
-          console.log('im back bitches');
           $cookies.remove('cookieProducts')
-          // $cookies.remove('shipInfo')
-          // $cookies.remove('billInfo')
+          $cookies.remove('shipInfo')
+          $cookies.remove('billInfo')
+          $rootScope.thankyou = "Thank you for your purchase! Your receipt will be sent to "+result.data.email+"."
           $location.url('/')
 				})
       }
   }
 
   var findCartProducts = function(){
-    $scope.grandTotal  = 0
+    $scope.grandTotal  = 0.00
     productFactory.findCartProducts($scope.cookieProducts, function(result){
       $scope.detailCart = result.data
-      console.log($scope.detailCart);
       for(var x = 0; x<$scope.detailCart.products.length; x++){
-        $scope.grandTotal += parseInt($scope.detailCart.products[x].subtotal)
-        if($scope.detailCart.products[x]._id in $scope.cookieProducts){
-          $scope.detailCart.products[x].qty = $scope.cookieProducts[$scope.detailCart.products[x]._id]
+        if ($scope.grandTotal == 0.00) {
+          $scope.grandTotal = parseFloat($scope.detailCart.products[x].subtotal)
+        } else {
+           $scope.grandTotal += parseFloat($scope.detailCart.products[x].subtotal)
         }
+
       }
-      $scope.shippingCost = ($scope.detailCart.shippingCost).toFixed(2)
-      $scope.grandTotal = (parseInt($scope.grandTotal)+parseInt($scope.shippingCost)).toFixed(2)
+      $scope.shippingCost = (parseFloat($scope.detailCart.shippingCost)).toFixed(2)
+      $scope.grandTotal = $scope.grandTotal + $scope.detailCart.shippingCost
+
     })
   }
   findCartProducts()
-
 
 
 }]);

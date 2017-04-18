@@ -1,4 +1,4 @@
-app.controller('accessoriesController', ['$scope', '$rootScope', 'productFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, $routeParams, $location, $cookies){
+app.controller('accessoriesController', ['$scope', '$rootScope', 'productFactory', 'bannerFactory', '$routeParams', '$location', '$cookies', function($scope, $rootScope, productFactory, bannerFactory, $routeParams, $location, $cookies){
   var cookieProducts = $cookies.getObject('cookieProducts')
 	$scope.products = []
 	$scope.cart = {}
@@ -8,6 +8,13 @@ app.controller('accessoriesController', ['$scope', '$rootScope', 'productFactory
 		// $scope.cartLength = Object.keys($scope.cart).length
 	}
 		populateCart()
+
+    var getAccessoriesProductsBanners = function(){
+      bannerFactory.getAccessoriesProductsBanners(function(data){
+        $scope.accessoriesProductBanner = data.data[0].image[0]
+      })
+    }
+    getAccessoriesProductsBanners()
 
 		$scope.getAccessories = function () {
 	    productFactory.getAccessories(function(data){
