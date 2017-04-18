@@ -40,6 +40,18 @@ module.exports = {
       if(err){
         console.log('error locating user')
       } else {
+        console.log(req.body.cookie);
+        res.json(user)
+      }
+    })
+  },
+  isUserAdmin: function(req, res){
+    console.log(req.body);
+    User.find({_id: req.body.cookie}, function(err, user){
+      if(err){
+        console.log('error locating user')
+      } else {
+        console.log(user);
         res.json(user)
       }
     })

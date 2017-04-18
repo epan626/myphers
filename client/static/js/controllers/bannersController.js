@@ -4,7 +4,20 @@ app.controller('bannersController', ['$scope', 'bannerFactory', 'userFactory', '
 	$scope.bannerCat = ["front", "shirt", "all", ".data", "bottoms", "accessories"]
   var cookie = $cookies.get('cookieloggeduser')
 
-  console.log(cookie)
+var isUserAdmin = function () {
+  if(cookie != undefined) {
+    userFactory.isUserAdmin(cookie, function(loggeduser){
+      $scope.loggeduser = loggeduser
+      if($scope.loggeduser.access_level != 10){
+        $location.url('/')
+      }
+    })
+  } else {
+    console.log("not logged in");
+    $location.url('/')
+  }
+}
+isUserAdmin()
 
 	$scope.dropzoneConfig = {
     'options': {
@@ -27,7 +40,7 @@ app.controller('bannersController', ['$scope', 'bannerFactory', 'userFactory', '
 		}
 		if(!$scope.banner.category){
 			$scope.errors = true;
-			$scope.messages.push('Please enter  acategory.');
+			$scope.messages.push('Please enter a category.');
 		}
 		else{
 			if($scope.errors == false){
@@ -38,9 +51,13 @@ app.controller('bannersController', ['$scope', 'bannerFactory', 'userFactory', '
 
 	$scope.getBanners = function () {
     bannerFactory.getBanners(function(data){
+			$scope.frontBanner = []
 			for(let i = 0; i < data.data.length; i++){
 				if(data.data[i].category == 'front'){
-					$scope.frontBanner = data.data[i].image[0]
+					for (var x = 0; x < data.data[i].image.length; x++) {
+						$scope.frontBanner.push(data.data[i].image[x])
+						console.log($scope.frontBanner);
+					}
 					console.log($scope.frontBanner);
 				}
 				else if(data.data[i].category == 'all'){

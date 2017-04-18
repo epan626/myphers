@@ -4,27 +4,38 @@ var Banner = mongoose.model('Banner');
 module.exports = {
   createBanner: function(req, res){
 		Banner.find({category: req.body.category}, function(err, banner){
-			if(err){
-				var banner = new Banner({category: req.body.category, image: req.files[0].path})
-				banner.save(function(err, banner){
-					if(err){
-						res.json("There was an error while creating your banner")
-					} else{
-						Banner.find({}, function(err, allBanners){
-							res.json(allBanners)
-						});
-					}
-				});
+			if(err || banner == false){
+        var banner = new Banner({category: req.body.category, image: []})
+        req.files.forEach(function(imageFile){
+          banner.image.push(imageFile.path)
+        })
+        banner.save(function(err, banner){
+          if(err){
+            res.json("There was an error while creating your banner")
+          } else{
+            Banner.find({}, function(err, allBanners){
+              res.json(allBanners)
+            });
+          }
+        });
+        console.log('here');
+        console.log(banner);
+
 			} else {
-				Banner.update({_id: banner[0]._id}, {image: req.files[0].path}, function(err, banner2){
-					if (err){
-						res.json("There was an error while creating your banner")
-					} else {
-						Banner.find({}, function(err, allBanners){
-							res.json(allBanners)
-						});
-					}
-				})
+Banner.findOne({category: req.body.category}, function(err, banner2){
+        req.files.forEach(function(imageFile){
+          banner2.image.push(imageFile.path)
+        })
+        banner2.save(function(err, banner3){
+          if(err){
+            res.json("There was an error while creating your banner")
+          } else{
+            Banner.find({}, function(err, allBanners){
+              res.json(allBanners)
+            });
+          }
+        });
+      })
 			}
 		})
 

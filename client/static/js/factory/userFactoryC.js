@@ -25,8 +25,17 @@ app.factory('userFactory',['$http', '$routeParams', function($http, $routeParams
         }
       });
   }
+  factory.isUserAdmin = function(cookie, callback){
+    console.log(cookie);
+    $http.post('/isUserAdmin', {cookie: cookie})
+    .then(
+      function(result){
+        callback(result.data[0])
+      }
+    )
+  }
   factory.showloggeduser = function(cookie, callback){
-    $http.get('/loggeduser', {cookie: cookie})
+    $http.post('/loggeduser', {cookie: cookie})
     .then(
       function(result){
         callback(result.data[0])

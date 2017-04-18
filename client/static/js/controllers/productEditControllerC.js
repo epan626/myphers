@@ -1,7 +1,23 @@
 app.controller('producteditController', ['$scope', 'productFactory', '$routeParams', '$location', function($scope, productFactory, $routeParams, $location){
   $scope.products = []
    $scope.categories = ["shirt", "sweater", "jacket", "shorts", "pants", "other"]
+   var cookie = $cookies.get('cookieloggeduser')
 
+   var isUserAdmin = function () {
+   if(cookie != undefined) {
+     userFactory.isUserAdmin(cookie, function(loggeduser){
+       $scope.loggeduser = loggeduser
+       if($scope.loggeduser.access_level != 10){
+         $location.url('/')
+       }
+     })
+   } else {
+     console.log("not logged in");
+     $location.url('/')
+   }
+   }
+   isUserAdmin()
+   
   var editpage = function() {
     productFactory.editpage(function(product){
       console.log(product.data)

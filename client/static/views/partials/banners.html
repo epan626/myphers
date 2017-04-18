@@ -1,4 +1,4 @@
-<div ng-controller='bannersController'>
+<div ng-cloak ng-controller='bannersController'>
 	<div class="container">
 		<div class="row">
 			<ul class="nav nav-pills">
@@ -35,8 +35,13 @@
 					<h4>Front Page</h4>
 					<div class=" bannerPreview">
 						<div class='bannerPreviewBorder'>
-							<a href="#/edit/{{banner._id}}"><img src="{{frontBanner}}" alt="">
-							</a>
+
+							<div ng-repeat ="banner in frontBanner">
+								<button type="button" name="button">x</button>
+								<img src="{{banner}}" alt="">
+							</div>
+
+
 						</div>
 					</div>
 					<h4>All</h4>

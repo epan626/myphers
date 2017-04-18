@@ -2,10 +2,21 @@
   outline: 1px dotted red;
 }*/
 
-/*.navBar{
-  width: 28%
-}*/
+.navBar{
+ text-align: center !important;
+ width: 250px;
+ display: inline-block;
+}
 
+/*.navbarLookbook ul li{
+  display: inline-block !important;
+  white-space:nowrap;*/
+  /*width: 50px;*/
+/*}*/
+
+.navbarLookbook ul{
+margin: auto !important;
+}
 .thankContainer{
   /*border-bottom: 1px solid black;*/
 }
@@ -15,11 +26,19 @@
 }
 
 .cartIcon{
+  text-align: center;
   width: 30px;
 }
 
 .cartIconContainer{
-   text-align: right;
+   float: right;
+   display: inline-block;
+   vertical-align: top;
+}
+
+.cartIconContainer img{
+/*margin-top: -10px;*/
+
 }
 .banners img{
   height: auto;
@@ -126,7 +145,6 @@ div.bannerPreviewBorder img {
   margin-top: 10px;
   width: 100%;
   height: 320px;
-  background-color: red;
 }
 
 .retaiDetails {
@@ -194,8 +212,10 @@ div.bannerPreviewBorder img {
 
 .frontBanner img{
   width: 100%;
-  height: 600px;
   margin-top: 10px;
+  height: auto;
+  width:auto\9;
+  max-width:100%;
 }
 
 .topsLogo{
@@ -440,9 +460,25 @@ vertical-align: top;
 .lookbookImagesContainerFront img{
   margin: auto;
   display: inline-block;
-
+  height: auto;
+  width: 100%;
 }
 
 .lookbookImagesContainerFront{
-  margin: 15px;
+  margin: 5px;
+   display: inline-block;
+   width: 32%;
+}
+
+.contactBar img{
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: 20px 10px 20px 10px;
+}
+
+.contactBar{
+  text-align: center;
+}
+
 }

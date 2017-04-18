@@ -6,7 +6,8 @@ var OrderSchema = new mongoose.Schema({
   _products: {type: Array},
   shippingAddress: {type: Array},
   grandTotal: {type: String},
-  status: {type: Boolean, default: false}
+  status: {type: Boolean, default: false},
+  trackingNumber: {type: String}
 }, {timestamps: true});
 
 

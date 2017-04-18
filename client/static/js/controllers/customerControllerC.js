@@ -73,7 +73,7 @@ if(!$scope.one.password){
 
 var isUserLogged = function () {
   if(cookie != undefined) {
-    $location.url('/dashboard')
+    // $location.url('/dashboard')
   } else {
     console.log("not logged in");
   }

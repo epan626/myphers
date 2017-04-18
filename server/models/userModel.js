@@ -23,6 +23,9 @@ var UserSchema = new mongoose.Schema({
       ],
        required: [true, 'Email is required']
     },
+    access_level: {
+     type: {type: Number, default: 0}
+   },
     first_name: {
       type: String,
       required: [true, 'Your first name is required'],

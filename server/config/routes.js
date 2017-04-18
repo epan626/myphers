@@ -81,8 +81,11 @@ module.exports = function(app){
   app.post('/login', function(req, res){
     User.login(req, res)
   })
-  app.get('/loggeduser', function(req, res){
+  app.post('/loggeduser', function(req, res){
     User.loggeduser(req, res)
+  })
+  app.post('/isUserAdmin', function(req, res){
+    User.isUserAdmin(req, res)
   })
   app.get('/allusers',  function(req, res){
     User.allusers(req, res)

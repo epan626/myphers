@@ -1,6 +1,21 @@
-app.controller('productController', ['productFactory', '$scope', '$location', '$cookies', function(productFactory, $scope, $location, $cookies){
+app.controller('productController', ['productFactory', 'userFactory','$scope', '$location', '$cookies', function(productFactory, userFactory, $scope, $location, $cookies){
   $scope.products = [];
   var cookie = $cookies.get('cookieloggeduser')
+
+var isUserAdmin = function () {
+  if(cookie != undefined) {
+    userFactory.isUserAdmin(cookie, function(loggeduser){
+      $scope.loggeduser = loggeduser
+      if($scope.loggeduser.access_level != 10){
+        $location.url('/')
+      }
+    })
+  } else {
+    console.log("not logged in");
+    $location.url('/')
+  }
+}
+isUserAdmin()
   $scope.categories = ["shirt", "sweater", "jacket", "shorts", "pants", "other"]
   $scope.sizes = ["XS","S", "M", "L", "XL", "XXL"]
   $scope.dropzoneConfig = {
