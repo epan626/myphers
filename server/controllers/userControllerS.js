@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 var User = mongoose.model('User');
-var bcrypt = require('bcrypt');
+var bcrypt = require("bcrypt-nodejs")
 
 module.exports = {
   create: function(req, res){
@@ -11,6 +11,7 @@ module.exports = {
             if(err){
               console.error('error while creating user')
             } else {
+              res.json('Successfully created your account!')
             }
           })
       } else {
