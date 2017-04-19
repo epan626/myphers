@@ -6,8 +6,6 @@ var Order = require('../controllers/orderControllerS.js');
 var Checkout = require('../controllers/checkoutControllerS.js')
 var Banner = require('../controllers/bannerController.js')
 var Lookbook = require('../controllers/lookbookController.js')
-// var multer = require('multer');
-// var upload = multer({dest: 'uploads/'});
 var fs = require('fs');
 
 
@@ -117,10 +115,16 @@ module.exports = function(app){
   app.put('/changeMainEditImage', function(req, res){
     editProduct.changeMainEditImage(req, res)
   })
+  app.put('/saveTrackingNumber', function(req, res){
+    Order.saveTrackingNumber(req, res)
+  })
   app.get('/lookbookEditPage/:id', function(req, res){
     Lookbook.lookbookEditPage(req, res)
   })
   app.get('/getSingleLookbook/:id', function(req, res){
     Lookbook.getSingleLookbook(req, res)
+  })
+  app.put('/deleteImagefromFrontBanner', function(req, res){
+    Banner.deleteImagefromFrontBanner(req, res)
   })
 }

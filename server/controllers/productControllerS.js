@@ -4,7 +4,7 @@ var Product = mongoose.model('Product');
 module.exports = {
   createNewProduct: function(req, res){
     var inventory = parseInt(req.body.inventory)
-    var product = new Product({name: req.body.name, description: req.body.description, inventory: inventory, price: req.body.price, category: req.body.category, size: req.body.size, image: []})
+    var product = new Product({name: req.body.name, description: req.body.description, condition: req.body.condition, inventory: inventory, price: req.body.price, category: req.body.category, size: req.body.size, image: []})
     req.files.forEach(function(imageFile){
       product.image.push(imageFile.path)
     })
@@ -42,7 +42,6 @@ module.exports = {
       if(err){
         console.error(err);
       } else {
-        console.log(products);
         res.json(products)
       }
     })
@@ -52,7 +51,6 @@ module.exports = {
       if(err){
         console.error(err);
       } else {
-        console.log(products);
         res.json(products)
       }
     })
@@ -85,7 +83,6 @@ module.exports = {
     })
   },
   findCartProducts: function(req, res){
-    console.log(req.body);
     var count = Object.keys(req.body).length
     var allDetailCart = {}
     var cartProduct = []

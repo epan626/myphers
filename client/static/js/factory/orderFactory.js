@@ -17,6 +17,14 @@ app.factory('orderFactory', ['$http', '$routeParams', function($http, $routePara
       }
     )
   }
+  factory.saveTrackingNumber = function(order, callback){
+    $http.put('/saveTrackingNumber', order)
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
 return factory
 
 }])

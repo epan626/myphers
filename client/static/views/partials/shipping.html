@@ -1,4 +1,4 @@
-<div ng-controller="shippingBillingController">
+<div ng-cloak ng-controller="shippingBillingController">
 	<div class="container">
 		<div class="row">
 			<div class="logohead">
@@ -73,14 +73,14 @@
 						 <td><img class="checkOutPreviewImage" src="{{product.image[0]}}" alt=""></td>
 						 <td><div class="testingDiv">
 							 <h5>{{product.name}}</h5>
-							 <p>Details: {{product.description}}</p>
+							 <p>{{product.description}}</p>
+							 <p>{{product.condition}}</p>
 							 <p>Size: {{product.size}}</p>
 							 <p>Qty: {{product.qty}}</p>
 							 <p>Subtotal: ${{product.subtotal}}</p>
 						 </div></td>
 					 </tr>
 					</table>
-
 					<div class="leftsideCart2">
 						<p>Shipping:</p>
 					 <p >Total:</p>
@@ -89,9 +89,6 @@
 					 <p>${{shippingCost}}</p>
 					 <p>${{grandTotal}}</p>
 				 </div>
-					<!-- {{shipInfo}}
-					{{detailCart}}
-					{{cookieProducts}} -->
 				</div>
 			</div>
 		</div>

@@ -11,7 +11,6 @@ module.exports = {
             if(err){
               console.error('error while creating user')
             } else {
-              console.log('creating user ' + user)
             }
           })
       } else {
@@ -40,18 +39,15 @@ module.exports = {
       if(err){
         console.log('error locating user')
       } else {
-        console.log(req.body.cookie);
         res.json(user)
       }
     })
   },
   isUserAdmin: function(req, res){
-    console.log(req.body);
     User.find({_id: req.body.cookie}, function(err, user){
       if(err){
         console.log('error locating user')
       } else {
-        console.log(user);
         res.json(user)
       }
     })
@@ -74,41 +70,5 @@ module.exports = {
       }
     })
   }
-  // editpage: function(req, res) {
-  //   Product.find({_id: req.params.id}, function(err, product){
-  //     if(err){
-  //     res.json(err)
-  //   } else {
-  //     console.log(product)
-  //     res.json(product)
-  //   }
-  //   })
-  // },
-  // updateProduct: function(req, res){
-  //   console.log('atupdate')
-  //   console.log(req.body.quantity)
-  //   Product.update({_id: req.body._id}, {name: req.body.name, description: req.body.description, image: req.body.image, quantity: req.body.quantity}, function(err, product){
-  //     if(err){
-  //       console.log(err)
-  //       console.log('error?')
-  //     res.json(err)
-  //   } else {
-  //     Product.save
-  //   }
-  //   })
-  // },
-  //
-  // deleteProduct: function(req, res){
-  //   console.log(req.params)
-  //   console.log('up')
-  //   Product.remove({_id: req.params.id}, function(err, success){
-  //     if(err){
-  //       console.log(err)
-  //       console.log('error?')
-  //     } else {
-  //       console.log('successfully deleted')
-  //       res.json('success')
-  //     }
-  //   })
-  // }
+
 }

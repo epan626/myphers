@@ -11,7 +11,6 @@ var isUserAdmin = function () {
       }
     })
   } else {
-    console.log("not logged in");
     $location.url('/')
   }
 }
@@ -44,6 +43,10 @@ isUserAdmin()
       $scope.errors = true;
       $scope.messages.push('Please enter product description.');
     }
+    if(!$scope.product.condition){
+      $scope.errors = true;
+      $scope.messages.push('Please enter product condition.');
+    }
     if(!$scope.product.inventory){
       $scope.errors = true;
       $scope.messages.push('Please enter product inventory.');
@@ -66,10 +69,6 @@ isUserAdmin()
       }
     }
   }
-  //
-  // $scope.reset = function(){
-  //   $scope.dropzone.removeAllFiles()
-  // }
 
   $scope.getProducts = function () {
     productFactory.getProducts(function(data){

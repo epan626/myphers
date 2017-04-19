@@ -35,52 +35,43 @@
 					<h4>Front Page</h4>
 					<div class=" bannerPreview">
 						<div class='bannerPreviewBorder'>
-
 							<div ng-repeat ="banner in frontBanner">
-								<button type="button" name="button">x</button>
+								<button type="button" name="button" ng-click="deleteImagefromFrontBanner(banner)">x</button>
 								<img src="{{banner}}" alt="">
 							</div>
-
-
 						</div>
 					</div>
 					<h4>All</h4>
 					<div class=" bannerPreview">
 						<div class='bannerPreviewBorder'>
-							<a href="#/edit/{{banner._id}}"><img src="{{allBanner}}" alt="">
-							</a>
+							<img src="{{allBanner}}" alt="">
 						</div>
 					</div>
 					<h4>Shirts</h4>
 					<div class=" bannerPreview">
 						<div class='bannerPreviewBorder'>
-							<a href="#/edit/{{banner._id}}"><img src="{{shirtBanner}}" alt="">
-							</a>
+							<img src="{{shirtBanner}}" alt="">
 						</div>
 					</div>
 					<h4>Outerwear</h4>
 					<div class=" bannerPreview">
 						<div class='bannerPreviewBorder'>
-							<a href="#/edit/{{banner._id}}"><img src="{{outerwearBanner}}" alt="">
-							</a>
+							<img src="{{outerwearBanner}}" alt="">
 						</div>
 					</div>
 					<h4>Bottoms</h4>
 					<div class=" bannerPreview">
 						<div class='bannerPreviewBorder'>
-							<a href="#/edit/{{banner._id}}"><img src="{{bottomsBanner}}" alt="">
-							</a>
+							<img src="{{bottomsBanner}}" alt="">
 						</div>
 					</div>
 					<h4>Accessories</h4>
 					<div class=" bannerPreview">
 						<div class='bannerPreviewBorder'>
-							<a href="#/edit/{{banner._id}}"><img src="{{accessoriesBanner}}" alt="">
-							</a>
+							<img src="{{accessoriesBanner}}" alt="">
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 		<div id="preview-template" style="display:none;">
@@ -96,7 +87,6 @@
 				<div class="dz-error-message"><span data-dz-errormessage></span></div>
 			</div>
 		</div>
-
 		<script type="text/javascript">
 			Dropzone.autoDiscover = false;
 		</script>

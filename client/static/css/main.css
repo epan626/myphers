@@ -8,17 +8,11 @@
  display: inline-block;
 }
 
-/*.navbarLookbook ul li{
-  display: inline-block !important;
-  white-space:nowrap;*/
-  /*width: 50px;*/
-/*}*/
+
 
 .navbarLookbook ul{
 margin: auto !important;
-}
-.thankContainer{
-  /*border-bottom: 1px solid black;*/
+display: inline-block;
 }
 
 .thankContainer h3{
@@ -36,10 +30,6 @@ margin: auto !important;
    vertical-align: top;
 }
 
-.cartIconContainer img{
-/*margin-top: -10px;*/
-
-}
 .banners img{
   height: auto;
   width:auto\9;
@@ -66,10 +56,8 @@ div.photo a.imglink img.newpicture {
 div.imagepreview img {
   width: 100%;
 }
-/* banner images should be around 1024x215  */
 div.bannerPreviewBorder img {
   width: 100%;
-  /* height should be auto later */
   height: auto;
 }
 .bannerPreviewBorder{
@@ -81,10 +69,6 @@ div.bannerPreviewBorder img {
   width: 1000px;
   height: auto;
   vertical-align: top;
-}
-
-.newArrivalsArrows{
-
 }
 
 .picborder {
@@ -152,14 +136,20 @@ div.bannerPreviewBorder img {
   margin-bottom: 20px;
 }
 
-.retailDetailsContent{
-   margin-top: 50px;
+
+.retailDetailsContent h4{
+   margin-bottom: 25px;
+}
+
+.retailDetailsContent button{
+  border-radius: 5px;
+  background-color: white;
+  margin-top: 25px;
 }
 
 .checkoutImage{
   width: 170px;
   height: auto;
-  /*height: 100px;*/
 }
 
 .dropzoneBox{
@@ -233,11 +223,15 @@ div.bannerPreviewBorder img {
 
 .productImages{
   width: 243px;
-  height: 364px;
+  height: auto;
   display: inline-block;
-  /*border: 1px solid black;*/
   vertical-align: top;
-  margin: 5px;
+  margin-left: 25px;
+  margin-right: 15px;
+  margin-bottom: 55px !important;
+}
+.shopContainer ul{
+  display: inline-block;
 }
 
 .productImages img{
@@ -245,6 +239,9 @@ div.bannerPreviewBorder img {
   height: 364px;
 }
 
+.productImages a{
+  text-decoration: none;
+}
 #mainRetailImage:hover{
   position: relative;
    -webkit-transform: scale(1.2);
@@ -264,12 +261,10 @@ div.bannerPreviewBorder img {
 
 .productImagesContainer{
   margin-top: 20px;
+
 }
 
-/*li{
-  margin-right: 10px;
-  margin-left: 20px;
-}*/
+
 
 .cartQTY{
   width: 25px;
@@ -288,12 +283,6 @@ div.bannerPreviewBorder img {
 .searchName{
   margin-left: -30px;
 }
-
-/*.cardInfo input{
-  margin-left: auto;
-  margin-right: 0;
-
-}*/
 
 
 .cardInfo{
@@ -443,6 +432,10 @@ vertical-align: top;
 
 .lookbookCovers h3 {
   text-align: center;
+}
+
+.lookbookCovers a{
+  text-decoration: none;
 }
 
 .lookbookImagesContainer img{

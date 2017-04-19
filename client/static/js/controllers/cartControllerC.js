@@ -4,18 +4,16 @@ app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$ro
     $scope.grandTotal  = 0.00
 		productFactory.findCartProducts(cookieProducts, function(result){
 			$scope.detailCart = result.data
-      console.log(result.data);
       for(var x = 0; x<$scope.detailCart.products.length; x++){
         if ($scope.grandTotal == 0.00) {
           $scope.grandTotal = parseFloat($scope.detailCart.products[x].subtotal)
         } else {
            $scope.grandTotal += parseFloat($scope.detailCart.products[x].subtotal)
         }
-
       }
-      $scope.shippingCost = (parseFloat($scope.detailCart.shippingCost)).toFixed(2)
-      $scope.grandTotal = $scope.grandTotal + $scope.detailCart.shippingCost
-
+      $scope.shippingCost = (result.data.shippingCost).toFixed(2)
+      $scope.grandTotal = $scope.grandTotal + parseFloat(result.data.shippingCost)
+      $scope.grandTotal = ($scope.grandTotal).toFixed(2)
 		})
 	}
 	findCartProducts()
@@ -23,7 +21,6 @@ app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$ro
   $scope.removeFromCart = function(product){
     var allProduct = $cookies.getObject('cookieProducts')
     var id = product._id
-
     if(id in allProduct){
       delete allProduct[id]
       $cookies.putObject('cookieProducts', allProduct)
@@ -37,14 +34,16 @@ app.controller('cartController', ['$scope', '$rootScope', 'productFactory', '$ro
         } else {
            $scope.grandTotal += parseFloat($scope.detailCart.products[x].subtotal)
         }
-
       }
       $scope.shippingCost = (parseFloat($scope.detailCart.shippingCost)).toFixed(2)
       $scope.grandTotal = $scope.grandTotal + $scope.detailCart.shippingCost
-
       })
   }
-
+  $scope.proceedToCheckout = function(detailCart){
+    if (detailCart.products.length > 0) {
+      $location.url('/shipping')
+    }
+  }
   $scope.updateCart = function(newQuantity){
     var newProducts ={}
     $scope.messages = [];

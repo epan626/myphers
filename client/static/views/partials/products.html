@@ -23,6 +23,8 @@
             <input type="text" class="form-control" name="name" ng-model='product.name'/>
             <label for="description" class="control-label">Description</label>
             <textarea class="form-control" rows="3" name="description" ng-model='product.description'></textarea>
+            <label for="condition" class="control-label">Condition</label>
+            <textarea class="form-control" rows="3" name="condition" ng-model='product.condition'></textarea>
             <label for="inventory" class="control-label">Inventory</label>
             <input type="number" class="form-control" name="inventory" ng-init="product.inventory=1" ng-model='product.inventory'/>
             <div class="dropzone dz-clickable" id="myDropzone" dropzone="dropzoneConfig">
@@ -31,11 +33,9 @@
             <label for="price" class="control-label">Price</label>
             <input type="text" name="price" class="form-control" ng-model='product.price'>
             <label class="control-label" for="category">Category</label>
-            <!-- <input type="text" name="category" class="form-control" ng-model='product.category'> -->
             <select class="form-control" name="category" ng-options="category as category for category in categories" ng-model ="product.category">
             </select>
             <label class="control-label" for="size">Size</label>
-            <!-- <input type="text" name="size" class="form-control" ng-model='product.size'> -->
             <select class="form-control" name="size" ng-options="size as size for size in sizes" ng-model ="product.size">
             </select>
           </div>
@@ -70,7 +70,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <div id="preview-template" style="display:none;">

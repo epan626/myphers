@@ -7,14 +7,12 @@ app.controller('shippingBillingController', ['$scope', '$rootScope', 'productFac
   $scope.quantityOptions = []
 	var populateCart = function() {
 		$scope.cart = cookieProducts
-		// $scope.cartLength = Object.keys($scope.cart).length
 	}
 		populateCart()
     var findCartProducts = function(){
       $scope.grandTotal  = 0.00
   		productFactory.findCartProducts(cookieProducts, function(result){
   			$scope.detailCart = result.data
-        console.log(result.data);
         for(var x = 0; x<$scope.detailCart.products.length; x++){
           if ($scope.grandTotal == 0.00) {
             $scope.grandTotal = parseFloat($scope.detailCart.products[x].subtotal)
@@ -26,13 +24,15 @@ app.controller('shippingBillingController', ['$scope', '$rootScope', 'productFac
         $scope.shippingCost = (parseFloat($scope.detailCart.shippingCost)).toFixed(2)
         $scope.grandTotal = $scope.grandTotal + $scope.detailCart.shippingCost
 
+        if( $scope.grandTotal == 0){
+         $location.url('/')
+        }
+
   		})
   	}
   	findCartProducts()
 
-
 		$scope.shippingAddress = function(customer){
-      console.log(customer);
       $scope.errors = false
       $scope.messages = []
       if(customer == undefined){
@@ -72,38 +72,10 @@ app.controller('shippingBillingController', ['$scope', '$rootScope', 'productFac
     			$location.url('/checkout')
         }
       }
-
-
 		}
 		$scope.billingAddress = function(customer1){
 			$cookies.putObject('billInfo', customer1)
 			$location.url('/checkout')
 		}
-
-//for billing page
-		// $scope.checked = function(customer){
-		// 	if(customer.checked){
-		// 		customer.FirstName = shipInfo.FirstName
-		// 		customer.LastName = shipInfo.LastName
-		// 		customer.NumberStreet = shipInfo.NumberStreet
-		// 		customer.email = shipInfo.email
-		// 		customer.AddressTwo = shipInfo.AddressTwo
-		// 		customer.townCity = shipInfo.townCity
-		// 		customer.state = shipInfo.state
-		// 		customer.zipCode = shipInfo.zipCode
-		// 		customer.country = shipInfo.country
-		// 	} else {
-		// 		customer.FirstName = ""
-		// 		customer.LastName = ""
-		// 		customer.NumberStreet = ""
-		// 		customer.AddressTwo = ""
-		// 		customer.townCity = ""
-		// 		customer.state = ""
-		// 		customer.zipCode = ""
-		// 		customer.country = ""
-		// 		customer.email = ""
-		// 	}
-		// }
-
 
 }])

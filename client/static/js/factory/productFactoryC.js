@@ -71,7 +71,9 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
   factory.deleteProduct = function(callback){
     $http.delete('/deleteProduct/'+$routeParams.id)
     .then(
-      console.log('Successfully deleted')
+      function(result){
+        callback(result)
+      }
     )
   }
 
@@ -79,7 +81,7 @@ app.factory('productFactory', ['$http', '$routeParams', function($http, $routePa
     $http.put('/orderProduct', order)
     .then(
       function(result){
-        console.log(result)
+        callback(result)
       }
     )
   }

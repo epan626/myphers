@@ -50,12 +50,10 @@
 					<h5 ng-if="products[0].inventory>1" class="retailDetails"><select  ng-change="changeQuantity(products[0], quantityOption)" ng-options="item as item for item in quantityOptions" ng-model = "quantityOption" ng-init="quantityOption = 1">
 					</select></h5>
 					<h5 class="retailDetails">{{products[0].description}}</h5>
+					<p>{{products[0].condition}}</p>
 					<button ng-click="addToCart(products[0], quantityOption)" class="retailDetails" type="button" name="button">Add to cart</button>
-
 				</div>
 			</div>
 		</div>
-
-
 	</div>
 </div>

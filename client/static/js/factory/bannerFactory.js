@@ -57,6 +57,14 @@ app.factory('bannerFactory', ['$http', '$routeParams', function($http, $routePar
       }
     )
   }
+	factory.deleteImagefromFrontBanner = function(banner, callback){
+    $http.put('/deleteImagefromFrontBanner', {banner: banner})
+    .then(
+      function(result){
+        callback(result)
+      }
+    )
+  }
 return factory
 
 }])

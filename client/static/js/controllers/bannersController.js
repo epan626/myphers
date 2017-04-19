@@ -1,7 +1,7 @@
 app.controller('bannersController', ['$scope', 'bannerFactory', 'userFactory', '$routeParams', '$location', '$cookies', function($scope, bannerFactory,  userFactory, $routeParams, $location, $cookies){
   $scope.loggeduser = {}
   $scope.users =[]
-	$scope.bannerCat = ["front", "shirt", "all", ".data", "bottoms", "accessories"]
+	$scope.bannerCat = ["front", "shirt", "all", "outerwear", "bottoms", "accessories"]
   var cookie = $cookies.get('cookieloggeduser')
 
 var isUserAdmin = function () {
@@ -30,6 +30,17 @@ isUserAdmin()
     }
   };
 
+	$scope.deleteImagefromFrontBanner = function(banner){
+    for(var x = 0; x<$scope.frontBanner.length; x++){
+      if(banner==$scope.frontBanner[x]){
+        console.log('here');
+       console.log($scope.frontBanner);
+      }
+    }
+		bannerFactory.deleteImagefromFrontBanner(banner, function(data){
+      $scope.getBanners()
+		})
+	}
 
 	$scope.createBanner = function(){
 		$scope.messages = [];
@@ -58,7 +69,6 @@ isUserAdmin()
 						$scope.frontBanner.push(data.data[i].image[x])
 						console.log($scope.frontBanner);
 					}
-					console.log($scope.frontBanner);
 				}
 				else if(data.data[i].category == 'all'){
 					$scope.allBanner = data.data[i].image[0]

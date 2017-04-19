@@ -6,90 +6,75 @@
 	</div>
 	<h1 class="text-center">Place Order</h1>
 	<div class="row">
-         <div class="col-lg-offset-1">
-           <div class="row">
-						 <ol class="breadCrumbs ">
-						   <li><a href="#/cart">Cart</a></li>
-						   <li><a href="#/shipping">Shipping</a></li>
-						   <li class="active">Payment</li>
-						 </ol>
-						 <div class="col-lg-3">
-  						<div class="cardInfo">
-								 <h3>Stripe Payment</h3>
-								 <div class="alert alert-danger" ng-repeat='message in messages'>
-		               <p ng-show='errors'> {{ message }} </p>
-		             </div>
-  							<form stripe-form="handleStripe" name="myForm">
-  								<div>
-  									<input type="text" class="input-block-level" ng-model="name" placeholder="Name on card">
-  								</div>
-                  <div>
-                    <input type="text" class="input-block-level" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" placeholder="Card number"/>
-                  </div>
-
-                  <div id="cardBottomInfo">
-                    <input type="text" class="input-block-level" ng-model="expiry" payments-validate="expiry" payments-format="expiry" placeholder="MM / YY"/>
-										 <input type="text" class="input-block-level" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" placeholder="CVC"/>
-                  </div>
-
-                  <div>
-
-                  </div>
-									<div>
-										<button type="submit" class="btn btn-primary payButton">Pay ${{grandTotal}}</button>
-										<p > <span class="warn2">Please review your order before paying</span></p>
-									</div>
-								</form>
-
-
-  						</div>
-
-
-						</div>
-
-						 <div class="col-lg-7 col-lg-offset-1">
-							 <h3>Review Order</h3>
-							 <div class="reviewContainer">
-								 <table class="table table-sm">
-								 	<tr>
-								 		<th>Your shopping bag</th>
-										<th></th>
-								 	</tr>
-									<tr ng-repeat="product in detailCart.products">
-										<td><img class="checkOutPreviewImage" src="{{product.image[0]}}" alt=""></td>
-										<td><div class="testingDiv">
-											<h5>{{product.name}}</h5>
-											<p>Details: {{product.description}}</p>
-											<p>Size: {{product.size}}</p>
-											<p>Qty: {{product.qty}}</p>
-											<p>Subtotal: ${{product.subtotal}}</p>
-										</div></td>
-									</tr>
-								 </table>
-
-								 <div class="leftsideCart2">
-									 <p>Shipping:</p>
-			 						<p >Total:</p>
-			 					</div>
-								 <div class="rightsideCart2">
-									<p>${{shippingCost}}</p>
-			 						<p>${{grandTotal}}</p>
-			 					</div>
-								 <!-- {{shipInfo}}
-								 {{detailCart}}
-								 {{cookieProducts}} -->
-							 </div>
-							<div >
-								<h4>Shipping Address <span ><a class="changeButton" href="#/shipping">Change</a></span></h4>
-								<h5>{{shipInfo.FirstName | uppercase}} {{shipInfo.LastName | uppercase}}</h5>
-								<p>{{shipInfo.NumberStreet | uppercase}}</p>
-								<p>{{shipInfo.townCity | uppercase}}, {{shipInfo.state | uppercase}} {{shipInfo.zipCode}}</p>
+	   <div class="col-lg-offset-1">
+	     <div class="row">
+				 <ol class="breadCrumbs ">
+				   <li><a href="#/cart">Cart</a></li>
+				   <li><a href="#/shipping">Shipping</a></li>
+				   <li class="active">Payment</li>
+				 </ol>
+				 <div class="col-lg-3">
+					<div class="cardInfo">
+						 <h3>Stripe Payment</h3>
+						 <div class="alert alert-danger" ng-repeat='message in messages'>
+	             <p ng-show='errors'> {{ message }} </p>
+	           </div>
+						<form stripe-form="handleStripe" name="myForm">
+							<div>
+								<input type="text" class="input-block-level" ng-model="name" placeholder="Name on card">
 							</div>
+	            <div>
+	              <input type="text" class="input-block-level" ng-model="number" payments-validate="card" payments-format="card" payments-type-model="type" ng-class="myForm.number.$card.type" placeholder="Card number"/>
+	            </div>
+	            <div id="cardBottomInfo">
+	              <input type="text" class="input-block-level" ng-model="expiry" payments-validate="expiry" payments-format="expiry" placeholder="MM / YY"/>
+								 <input type="text" class="input-block-level" ng-model="cvc" payments-validate="cvc" payments-format="cvc" payments-type-model="type" placeholder="CVC"/>
+	            </div>
+							<div>
+								<button type="submit" class="btn btn-primary payButton">Pay ${{grandTotal}}</button>
+								<p > <span class="warn2">Please review your order before paying</span></p>
+							</div>
+						</form>
+					</div>
+				</div>
+				 <div class="col-lg-7 col-lg-offset-1">
+					 <h3>Review Order</h3>
+					 <div class="reviewContainer">
+						 <table class="table table-sm">
+						 	<tr>
+						 		<th>Your shopping bag</th>
+								<th></th>
+						 	</tr>
+							<tr ng-repeat="product in detailCart.products">
+								<td><img class="checkOutPreviewImage" src="{{product.image[0]}}" alt=""></td>
+								<td><div class="testingDiv">
+									<h5>{{product.name}}</h5>
+									<p>{{product.description}}</p>
+									<p>{{product.condition}}</p>
+									<p>Size: {{product.size}}</p>
+									<p>Qty: {{product.qty}}</p>
+									<p>Subtotal: ${{product.subtotal}}</p>
+								</div></td>
+							</tr>
+						 </table>
 
-						 </div>
-           </div>
-         </div>
-
-       </div>
-
+						 <div class="leftsideCart2">
+							 <p>Shipping:</p>
+	 						<p >Total:</p>
+	 					</div>
+						 <div class="rightsideCart2">
+							<p>${{shippingCost}}</p>
+	 						<p>${{grandTotal}}</p>
+	 					</div>
+					 </div>
+					<div >
+						<h4>Shipping Address <span ><a class="changeButton" href="#/shipping">Change</a></span></h4>
+						<h5>{{shipInfo.FirstName | uppercase}} {{shipInfo.LastName | uppercase}}</h5>
+						<p>{{shipInfo.NumberStreet | uppercase}}</p>
+						<p>{{shipInfo.townCity | uppercase}}, {{shipInfo.state | uppercase}} {{shipInfo.zipCode}}</p>
+					</div>
+				 </div>
+	     </div>
+	   </div>
+	 </div>
 </div>

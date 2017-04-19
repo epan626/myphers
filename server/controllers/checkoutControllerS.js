@@ -52,19 +52,12 @@ charge: function(req, res){
 			}
 			for(var y = 0; y<result.length; y++){
 				grandtotal = (grandtotal + parseFloat(result[y].subtotal))
-
 			}
 			grandtotal = (grandtotal + shippingCost)
-
-
 			var price = grandtotal.toFixed(2).split('.').join("")
 		}
 		User.findOne({email: req.body.shipInfo.email}, function(err, user){
-			console.log("FIRST HERE");
-			console.log(user);
-			console.log("FIRST HERE");
 			if(err || user == null){
-				console.log('second');
 				stripe.customers.create({
 					email: req.body.shipInfo.email,
 					source: req.body.token,
@@ -78,8 +71,7 @@ charge: function(req, res){
 					}, function(err, charge) {
 						if(err){
 							console.error(err);
-						} else {
-							console.log('third');
+						} else {;
 							//loops through cart to update the database
 							for(var i = 0; i < result.length; i++){
 								var quant = req.body.products[result[i]._id]
@@ -111,7 +103,6 @@ charge: function(req, res){
 				})
 			} else {
 				if(user.email == req.body.shipInfo.email){
-					console.log('seventh');
 					//user exist in the database but does not have stripe customer ID
 					if(!user.customer){
 						//create stripe customer

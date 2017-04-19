@@ -24,8 +24,6 @@ isUserAdmin()
  var getOrders = function(){
    orderFactory.getOrders(function(data){
      $scope.orders = data.data
-     console.log($scope.orders);
-
    })
  }
 getOrders()
@@ -39,6 +37,11 @@ $scope.orderStatusChange = function(order){
  $scope.logout = function() {
    $cookies.remove('cookieloggeduser')
    $location.url('/')
+ }
+
+ $scope.saveTrackingNumber = function(order){
+   orderFactory.saveTrackingNumber(order, function(data){
+   })
  }
 
 }])
